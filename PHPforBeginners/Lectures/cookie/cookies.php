@@ -1,13 +1,11 @@
 <?php 
 	
 	// parameters of setcookie function
-	$name = "Name";	
+	$name = "name";	
 	$value = "Anna";
 	$expiration = time() + (20) ;
 
 	setcookie($name, $value, $expiration);
-
-	print_r($_COOKIE);
 ?>
 
 <!DOCTYPE html>
@@ -17,6 +15,25 @@
 	<title>Cookies</title>
 </head>
 <body>
+
+	<?php 
+
+		if(isset($_COOKIE['name'])){
+
+			$name = $_COOKIE['name'];
+
+
+
+		}else{
+
+			$name = "";
+
+		}
+
+
+		echo $name;
+
+	?>
 	
 </body>
 </html>
