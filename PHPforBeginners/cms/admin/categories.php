@@ -20,16 +20,24 @@
 
                         <div class="col-xs-6">
                             <!--- Includes of functions files -->
-                            <?php include('includes/add_cat.php'); ?>
+                            <?php include('includes/cat_function.php'); ?>
                             <form method="POST">
                                 <div class="form-group">
-                                    <label for="cat_title">Category title</label>
+                                    <label for="cat_title">Add Category</label>
                                     <input class="form-control" type="text" name="cat_title">
                                 </div>
                                 <div class="form-group">
                                     <input class="btn btn-primary" type="submit" name="submit_Cat" value="Add category">
                                 </div>                                                              
                             </form>
+                            <?php 
+
+                                if(isset($_GET['update'])){
+
+                                    include('includes/templates/update_category.php');
+                                }
+
+                            ?>
                         </div>
                         <div class="col-xs-6">
                             <table class="table table-bordered table-hover">
@@ -49,8 +57,12 @@
 
                                         while($category = mysqli_fetch_assoc($cat_results)){
 
-                                            echo "<tr><td>{$category['cat_id']}</td>";
-                                            echo "<td>{$category['cat_title']}</td></tr>";
+                                            echo "<tr>";
+                                            echo "<td>{$category['cat_id']}</td>";
+                                            echo "<td>{$category['cat_title']}</td>";
+                                            echo "<td><a href='categories.php?delete={$category['cat_id']}'>Delete</a></td>";
+                                            echo "<td><a href='categories.php?update={$category['cat_id']}'>Update</a></td>";
+                                            echo "</tr>";
 
                                         }
 

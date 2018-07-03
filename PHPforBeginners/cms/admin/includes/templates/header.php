@@ -1,3 +1,7 @@
+<?php 
+    ob_start(); 
+    $cat_to_modify="";
+?>
 <?php include_once('../includes/db.php'); ?>
 
 <!DOCTYPE html>
