@@ -4,14 +4,17 @@
                 <!-- Blog Search Well -->
                 <div class="well">
                     <h4>Blog Search</h4>
-                    <div class="input-group">
-                        <input type="text" class="form-control">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">
-                                <span class="glyphicon glyphicon-search"></span>
-                        </button>
-                        </span>
-                    </div>
+                    <!-- Form search -->
+                    <form action="search.php" method="POST">
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="search">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" name="submit" type="submit">
+                                    <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                            </span>
+                        </div>    
+                    </form><!-- /. form tag -->                    
                     <!-- /.input-group -->
                 </div>
 
@@ -21,14 +24,19 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <ul class="list-unstyled">
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
+                                <?php  
+
+                                    $query = "SELECT * FROM categories";
+
+                                    $cat_results = mysqli_query($connection, $query) or die ("Query failed!");
+
+                                    while($category = mysqli_fetch_assoc($cat_results)){
+
+                                        echo "<li><a href='#'>{$category['cat_title']}</a></li>";
+
+                                    }
+
+                                ?>
                             </ul>
                         </div>
                         <!-- /.col-lg-6 -->
