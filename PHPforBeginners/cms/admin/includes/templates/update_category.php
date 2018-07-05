@@ -1,3 +1,4 @@
+<!-- TEMPLATE TO SHOW INPUT TO MODIFY CATEGORY'S TITLE -->
 <form method="POST">
     <div class="form-group">
         <label for="cat_title">Modify Category Title</label>

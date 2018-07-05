@@ -20,7 +20,7 @@
 
                         <div class="col-xs-6">
                             <!--- Includes of functions files -->
-                            <?php include('includes/cat_function.php'); ?>
+                            
                             <form method="POST">
                                 <div class="form-group">
                                     <label for="cat_title">Add Category</label>
@@ -35,6 +35,7 @@
                                 if(isset($_GET['update'])){
 
                                     include('includes/templates/update_category.php');
+
                                 }
 
                             ?>
@@ -51,23 +52,9 @@
                                 <tbody>
                                     <?php  
 
-                                        $query = "SELECT * FROM categories";
+                                        cat_table();
 
-                                        $cat_results = mysqli_query($connection, $query) or die ("Query failed!");
-
-                                        while($category = mysqli_fetch_assoc($cat_results)){
-
-                                            echo "<tr>";
-                                            echo "<td>{$category['cat_id']}</td>";
-                                            echo "<td>{$category['cat_title']}</td>";
-                                            echo "<td><a href='categories.php?delete={$category['cat_id']}'>Delete</a></td>";
-                                            echo "<td><a href='categories.php?update={$category['cat_id']}'>Update</a></td>";
-                                            echo "</tr>";
-
-                                        }
-
-                                    ?>
-     
+                                    ?>     
                                 </tbody>
                             </table>
                         </div>

@@ -2,7 +2,12 @@
     ob_start(); 
     $cat_to_modify="";
 ?>
-<?php include_once('../includes/db.php'); ?>
+<?php 
+
+    include_once('../includes/db.php');
+    include('includes/cat_function.php');
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
