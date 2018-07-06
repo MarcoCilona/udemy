@@ -15,27 +15,24 @@
                         Blank Page
                         <small>Subheading</small>
                     </h1>
+				 	<?php 
 
-					<table class="table table-bordered table-hover">
-						<thead>
-							<tr>
-								<th>ID</th>
-								<th>Author</th>
-								<th>Content</th>
-								<th>Title</th>
-								<th>Categories</th>
-								<th>Status</th>
-								<th>Image</th>
-								<th>Tags</th>
-								<th>Date</th>
-								<th>Comments</th>
-							</tr>
-						</thead>
-						<tbody>
-							<?php show_posts(); ?>
-						</tbody>
-					</table>
+				 		$source = null;
 
+				 		if(isset($_GET['source']))
+				 			$source = $_GET['source'];
+						
+						switch ($source) {
+							case 'add':
+								include('includes/templates/add_post.php');
+								break;
+							
+							default:
+								include('includes/templates/view_all_posts.php');
+								break;
+						}
+
+				 	?>
 				</div>                   
             </div>
             <!-- /.row -->
