@@ -26,6 +26,14 @@
 							case 'add':
 								include('includes/templates/add_post.php');
 								break;
+
+							case 'delete':
+								delete_post($_GET['id']);
+								break;
+
+							case 'edit':
+								include('includes/templates/edit_post.php');
+								break;
 							
 							default:
 								include('includes/templates/view_all_posts.php');

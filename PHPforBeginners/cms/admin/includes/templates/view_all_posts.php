@@ -6,7 +6,7 @@
 				<th>Author</th>
 				<th>Content</th>
 				<th>Title</th>
-				<th>Categories</th>
+				<th>Category</th>
 				<th>Status</th>
 				<th>Image</th>
 				<th>Tags</th>

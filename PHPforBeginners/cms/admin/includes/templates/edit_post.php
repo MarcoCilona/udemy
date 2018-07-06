@@ -1,23 +1,28 @@
+<?php 
+
+	$post_data = update_post(); 
+
+?>
 <form action="" method="POST" enctype="multipart/form-data">
 	
 	<div class="form-group">
 		<label for="title">Post Title</label>
-		<input type="text" class="form-control" name="title">
+		<input value="<?php echo $post_data['title']; ?>" type="text" class="form-control" name="title">
 	</div>
 
 	<div class="form-group">
 		<label for="title">Post Author</label>
-		<input type="text" class="form-control" name="author">
+		<input value="<?php echo $post_data['author']; ?>" type="text" class="form-control" name="author">
 	</div>
 
 	<div class="form-group">
 		<label for="title">Post Status</label>
-		<input type="text" class="form-control" name="status">
+		<input value="<?php echo $post_data['status']; ?>" type="text" class="form-control" name="status">
 	</div>
 
 	<div class="form-group">
-		<label for="title">Post Category Id</label><br />
 		<select class="form-control" name="category">
+
 			<?php 
 
 				$query = "SELECT * FROM categories ";
@@ -32,26 +37,30 @@
 				}
 
 			?>
-		</select>	
+			
+		</select>
 	</div>
 
 	<div class="form-group">
+		<label>Current Img </label><br />
+		<img width="300px" height="100px" src="<?php echo "../images/{$post_data['img']}" ?>" />
+		<br />
 		<label for="title">Post Image</label>
 		<input type="file" class="form-control" name="img">
 	</div>
 	
 	<div class="form-group">
 		<label for="title">Post Tags</label>
-		<input type="text" class="form-control" name="tags">
+		<input value="<?php echo $post_data['tag']; ?>"type="text" class="form-control" name="tags">
 	</div>
 
 	<div class="form-group">
 		<label for="title">Post Content</label>
-		<textarea class="form-control" name="content" id="" cols="30" rows="10"></textarea>
+		<textarea class="form-control" name="content" id="" cols="30" rows="10"><?php echo $post_data['content']; ?></textarea>
 	</div>
 
 	<div class="form-group">
-		<input type="submit" class="form-control btn btn-primary" value="Save post" name="add_post">
+		<input type="submit" class="form-control btn btn-primary" value = "Save changes" name="edit_post">
 	</div>
 
 </form>
