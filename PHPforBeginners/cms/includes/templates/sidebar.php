@@ -26,15 +26,7 @@
                             <ul class="list-unstyled">
                                 <?php  
 
-                                    $query = "SELECT * FROM categories";
-
-                                    $cat_results = mysqli_query($connection, $query) or die ("Query failed!");
-
-                                    while($category = mysqli_fetch_assoc($cat_results)){
-
-                                        echo "<li><a href='#'>{$category['cat_title']}</a></li>";
-
-                                    }
+                                    show_cat();           
 
                                 ?>
                             </ul>

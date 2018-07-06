@@ -1,3 +1,4 @@
+<?php include('includes/cat_functions.php'); ?>
 
 <head>
 

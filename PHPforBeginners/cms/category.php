@@ -29,9 +29,16 @@
                 </h1>
 
                  
-                <?php 
+                <?php
+
+                    if(isset($_GET['cat'])){
+
+                        $post_category = $_GET['cat'];
+
+                    }
 
                     $query = "SELECT * FROM posts ";
+                    $query .= "WHERE post_category_id = $post_category ";
                     $post_results = mysqli_query($connection, $query) or die ("Failed to read data from db. Error: " . mysqli_error($connection));
 
                     while($item = mysqli_fetch_assoc($post_results)){

@@ -138,7 +138,7 @@
                                 <a href="./posts.php">View All</a>
                             </li>
                             <li>
-                                <a href="#">Add Post</a>
+                                <a href="./posts.php?source=add">Add Post</a>
                             </li>
                         </ul>
                     </li>
