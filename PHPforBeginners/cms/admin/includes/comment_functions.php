@@ -32,7 +32,7 @@
 			echo "<td>{$comm_date}</td>";
 			echo "<td>{$comm_email}</td>";
 			echo "<td>{$comm_status}</td>";
-			echo "<td><a href=\"post.php?id={$comm_post_id}\">{$comm_related_post}</a></td>";
+			echo "<td><a href=\"../post.php?id={$comm_post_id}\">{$comm_related_post}</a></td>";
 			echo "<td><a href=\"comments.php?approve={$id}\">Approve</a></td>";
 			echo "<td><a href=\"comments.php?unapprove={$id}\">Unapprove</a></td>";
 			echo "<td><a href=\"comments.php?delete_comment={$id}&post={$comm_post_id}\">Delete</a></td>";
