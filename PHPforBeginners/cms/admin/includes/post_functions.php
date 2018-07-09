@@ -8,11 +8,11 @@
 
 		global $connection; 
 
-		$query = "SELECT posts.*, categories.cat_title FROM posts ";
-		$query .= "INNER JOIN categories ";
-		$query .= "ON posts.post_category_id = categories.cat_id ";
+		$query_show_posts = "SELECT posts.*, categories.cat_title FROM posts ";
+		$query_show_posts .= "LEFT JOIN categories ";
+		$query_show_posts .= "ON posts.post_category_id = categories.cat_id ";
 
-		$posts = mysqli_query($connection, $query) or die ("Failed to return al posts. <br />Error: " . mysqli_error($connection));
+		$posts = mysqli_query($connection, $query_show_posts) or die ("Failed to return al posts. <br />Error: " . mysqli_error($connection));
 
 		while($single_post = mysqli_fetch_assoc($posts)){
 			$post_id = $single_post['post_id'];
@@ -65,10 +65,9 @@
 		$post_tags = $_POST['tags'];
 		$post_content = $_POST['content'];
 		$post_date = date('d-m-y');
-		$post_comment_count = 0;
-
+		
 		$query = "INSERT INTO posts (post_category_id, post_title, post_author, post_date, post_img, post_content, post_tag, post_comment_count, post_status) ";
-		$query .= "VALUES ($post_category_id, '$post_title', '$post_author', now(), '$post_img', '$post_content', '$post_tags', $post_comment_count, '$post_status') ";
+		$query .= "VALUES ($post_category_id, '$post_title', '$post_author', now(), '$post_img', '$post_content', '$post_tags', '$post_status') ";
 
 		mysqli_query($connection, $query) or die ('Failed to add new post. <br />Error: ' . mysqli_error($connection));
 
