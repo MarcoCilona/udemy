@@ -4,7 +4,7 @@
 
 ?>
 <form action="" method="POST" enctype="multipart/form-data">
-	
+
 	<div class="form-group">
 		<label for="title">Post Title</label>
 		<input value="<?php echo $post_data['title']; ?>" type="text" class="form-control" name="title">
@@ -27,12 +27,17 @@
 
 				$query = "SELECT * FROM categories ";
 				$category_list = mysqli_query($connection, $query) or die('Failed to read categories.');
-
+				
+					
 				while ($item = mysqli_fetch_assoc($category_list)){
 					$cat_id = $item['cat_id'];
 					$cat_title = $item['cat_title'];
+					$selected = "";
 
-					echo "<option value='{$cat_id}'>{$cat_title}</option>";
+					if($post_data['category_id'] == $cat_id)
+						$selected = 'selected';
+
+					echo "<option $selected value='{$cat_id}'>{$cat_title}</option>";
 
 				}
 

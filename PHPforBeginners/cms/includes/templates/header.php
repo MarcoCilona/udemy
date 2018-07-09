@@ -1,4 +1,9 @@
-<?php include('includes/cat_functions.php'); ?>
+<?php 
+    
+    include('includes/cat_functions.php');
+    include('includes/comment_functions.php'); 
+
+?>
 
 <head>
 
