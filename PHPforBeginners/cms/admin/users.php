@@ -2,7 +2,7 @@
 
 	include('includes/templates/header.php');
 	include('includes/templates/navigation.php');
-	include('includes/comment_functions.php');
+	include('includes/users_functions.php');
 
 ?>   
 <div id="wrapper">
@@ -23,9 +23,12 @@
 				 			$source = $_GET['source'];
 						
 						switch ($source) {
+							case 'add':
+								include('includes/templates/add_user.php');
+								break;
 							
 							default:
-								include('includes/templates/view_all_comments.php');
+								include('includes/templates/view_all_users.php');
 								break;
 						}
 
