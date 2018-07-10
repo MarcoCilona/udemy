@@ -49,6 +49,25 @@
                     <!-- /.row -->
                 </div>
 
+                <!-- Log in form -->
+                <div class="well">
+                    <h4>Log in</h4>
+                    <!-- Form search -->
+                    <form action="includes/login.php" method="POST">
+                        <div class="form-group">
+                            <label>Username</label>
+                            <input type="text" class="form-control" name="login_username" placeholder="Enter username">
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" class="form-control" name="login_password" placeholder="Enter password">
+                        </div>
+                        <button class="btn btn-primary" name="login_submit" type="submit">Log In</button>
+                    </form><!-- /. form tag -->                    
+                    <!-- /.input-group -->
+                </div>
+                <!-- /.log in form -->   
+
                 <!-- Side Widget Well -->
                 <div class="well">
                     <h4>Side Widget Well</h4>

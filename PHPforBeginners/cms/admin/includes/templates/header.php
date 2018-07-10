@@ -1,7 +1,10 @@
 <?php 
+    
     ob_start(); 
-    $cat_to_modify="";
+    session_start();
+         
 ?>
+
 <?php 
 
     include_once('../includes/db.php');
