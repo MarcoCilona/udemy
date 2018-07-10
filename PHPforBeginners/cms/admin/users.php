@@ -26,6 +26,10 @@
 							case 'add':
 								include('includes/templates/add_user.php');
 								break;
+
+							case 'update_user':
+								include('includes/templates/edit_user.php');
+								break;
 							
 							default:
 								include('includes/templates/view_all_users.php');

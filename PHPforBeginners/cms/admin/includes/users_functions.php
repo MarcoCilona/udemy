@@ -28,7 +28,7 @@
 			echo "<td>{$user_email}</td>";
 			echo "<td>{$user_role}</td>";
 			echo "<td><img class='img-responsive' src='images/$user_img' /></td>";
-			echo "<td><a href=\"users.php?update_user={$user_id}\">Update</a></td>";
+			echo "<td><a href=\"users.php?source=update_user&user_id={$user_id}\">Update</a></td>";
 			echo "<td><a href=\"users.php?delete_user={$user_id}\">Delete</a></td>";
 			echo "</tr>";
 
@@ -69,6 +69,90 @@
 		$delte_user_query .= "WHERE id = $user_id ";
 
 		mysqli_query($connection, $delte_user_query) or die("Failed to delete user. <br />Error: " . mysqli_error($connection));
+
+		header("Location: users.php");
+	}
+
+	function fill_user_data () {
+
+		global $connection;
+
+		if(isset($_GET['user_id'])){
+
+			$u_id = $_GET['user_id'];
+
+			$user_info_query = "SELECT * FROM users ";
+			$user_info_query .= "WHERE id = $u_id ";
+
+			$users_list = mysqli_query($connection, $user_info_query) or die("Failed to load user info. <br />Error: " . mysqli_error($connection));
+
+			return mysqli_fetch_assoc($users_list);
+
+		}
+
+	}
+
+	if(isset($_POST['edit_user'])){
+
+		$user_id = $_GET['user_id'];
+
+		$username = $_POST['username'];
+		$first_name = $_POST['first_name'];
+		$last_name = $_POST['last_name'];
+		$email = $_POST['email'];
+		$role = $_POST['role'];
+		$user_pw = $_POST['user_pw'];
+		
+		$user_img = $_FILES['user_img']['name'];
+		$user_img_temp = $_FILES['user_img']['tmp_name'];
+
+		move_uploaded_file($user_img_temp, "images/$user_img");
+
+		if(empty($post_img)){
+
+			$query = "SELECT img FROM users ";
+			$query .= "WHERE id =  $user_id ";
+			$result = mysqli_query($connection, $query);
+
+			while($item = mysqli_fetch_assoc($result)){
+				$post_img = $item['img'];
+			}
+
+		}
+
+		$encrypt_pw;
+
+		if(empty($user_pw)){
+
+			$query = "SELECT password FROM users ";
+			$query .= "WHERE id = $user_id ";
+
+			$user = mysqli_query($connection, $query) or die("Failed to read user's password. <br />Error: " . mysqli_error($connection));
+
+			while($info = mysqli_fetch_assoc($user)){
+
+				$encrypt_pw = $info['password'];
+
+			}
+
+		}else{
+
+			$encrypt_pw = password_hash($user_pw, PASSWORD_DEFAULT, array('cost' => 10));
+
+		}
+
+
+		$update_query = "UPDATE users ";
+		$update_query .= "SET username = '$username', ";
+		$update_query .= "password = '$encrypt_pw', ";
+		$update_query .= "first_name = '$first_name', ";
+		$update_query .= "last_name = '$last_name', ";
+		$update_query .= "role = $role, ";
+		$update_query .= "email = '$email', ";
+		$update_query .= "img = '$user_img' ";
+		$update_query .= "WHERE id = $user_id ";
+
+		mysqli_query($connection, $update_query) or die ("Failed to update user info. <br />Error: " . mysqli_error($connection));
 
 		header("Location: users.php");
 	}
