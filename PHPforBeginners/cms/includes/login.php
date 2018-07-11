@@ -22,24 +22,22 @@
 			$db_role = $user['role'];
 			$db_pw = $user['password'];
 
-			if(!password_verify($password, $db_pw)){
-				
-				header("Location: ../index.php");
+		}
+
+		if(!password_verify($password, $db_pw)){
 			
-			}else{
+			header("Location: ../index.php");
+		
+		}else{
 
-				$_SESSION['username'] = $db_username;
-				$_SESSION['firstname'] = $db_firstname;
-				$_SESSION['lastname'] = $db_lastname;
-				$_SESSION['role'] = $db_role;
+			$_SESSION['username'] = $db_username;
+			$_SESSION['firstname'] = $db_firstname;
+			$_SESSION['lastname'] = $db_lastname;
+			$_SESSION['role'] = $db_role;
 
-				header("Location: ../admin");
-
-			}
-
-		}		
-
-
+			header("Location: ../admin");
+			
+		}
 
 	}
 

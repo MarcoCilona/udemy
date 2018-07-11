@@ -1,14 +1,39 @@
 <?php 
+
+    include_once('../includes/db.php');
+    include('includes/cat_function.php');
+
+?>
+
+<?php 
     
     ob_start(); 
     session_start();
-         
+
 ?>
 
 <?php 
 
-    include_once('../includes/db.php');
-    include('includes/cat_function.php');
+    if (isset($_SESSION['role'])) {
+        $role_id = $_SESSION['role'];
+
+        $query = "SELECT role_name FROM role ";
+        $query .= "WHERE id = $role_id ";
+
+        $role = mysqli_query($connection, $query) or die("Failed to load role name. <br />Error: " .mysqli_error($connection));
+
+        $role_name = mysqli_fetch_array($role);
+        
+        if($role_name[0] !== 'admin'){
+            header("Location: ../index.php");
+
+        }    
+
+    }else{
+
+        header("Location: ../index.php");
+
+    } 
 
 ?>
 
