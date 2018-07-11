@@ -7,11 +7,11 @@
 	*/
 	if(isset($_POST['submit_comment'])){
 
-		$comment_post_id = $_GET['id'];
+		$comment_post_id = mysqli_real_escape_string($connection, $_GET['id']);
 		$comment_day = date('d-m-y');		
-		$comment_author = $_POST['comm_author'];
-		$comment_email = $_POST['comm_email'];
-		$comment_content = $_POST['comm_content'];
+		$comment_author = mysqli_real_escape_string($connection, $_POST['comm_author']);
+		$comment_email = mysqli_real_escape_string($connection, $_POST['comm_email']);
+		$comment_content = mysqli_real_escape_string($connection, $_POST['comm_content']);
 
 		$query = "INSERT INTO comments (comment_post_id, comment_date, comment_author, comment_email, comment_content) ";
 		$query .= "VALUES ($comment_post_id, now(), '$comment_author', '$comment_email', '$comment_content') ";

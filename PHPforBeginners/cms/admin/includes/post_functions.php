@@ -52,21 +52,21 @@
 	*/
 	if(isset($_POST['add_post'])){
 
-		$post_title = $_POST['title'];
-		$post_author = $_POST['author'];
+		$post_title = mysqli_real_escape_string($connection, $_POST['title']);
+		$post_author = mysqli_real_escape_string($connection, $_POST['author']);
 		$post_category_id = $_POST['category'];
-		$post_status = $_POST['status'];
+		$post_status = mysqli_real_escape_string($connection, $_POST['status']);
 
 		$post_img = $_FILES['img']['name'];
 		$post_img_temp = $_FILES['img']['tmp_name'];
 
 		move_uploaded_file($post_img_temp, "../images/$post_img");
 
-		$post_tags = $_POST['tags'];
-		$post_content = $_POST['content'];
+		$post_tags = mysqli_real_escape_string($connection, $_POST['tags']);
+		$post_content = mysqli_real_escape_string($connection, $_POST['content']);
 		$post_date = date('d-m-y');
 		
-		$query = "INSERT INTO posts (post_category_id, post_title, post_author, post_date, post_img, post_content, post_tag, post_comment_count, post_status) ";
+		$query = "INSERT INTO posts (post_category_id, post_title, post_author, post_date, post_img, post_content, post_tag, post_status) ";
 		$query .= "VALUES ($post_category_id, '$post_title', '$post_author', now(), '$post_img', '$post_content', '$post_tags', '$post_status') ";
 
 		mysqli_query($connection, $query) or die ('Failed to add new post. <br />Error: ' . mysqli_error($connection));
@@ -122,7 +122,6 @@
 				$post_info['img'] = $single_post['post_img'];
 				$post_info['content'] = $single_post['post_content'];
 				$post_info['tag'] = $single_post['post_tag'];
-				$post_info['comment_count'] = $single_post['post_comment_count'];
 				$post_info['status'] = $single_post['post_status'];
 			}
 		}	
@@ -140,10 +139,10 @@
 
 		$post_id = $_GET['id'];
 
-		$post_title = $_POST['title'];
-		$post_author = $_POST['author'];
+		$post_title = mysqli_real_escape_string($connection, $_POST['title']);
+		$post_author = mysqli_real_escape_string($connection, $_POST['author']);
 		$post_category_id = $_POST['category'];
-		$post_status = $_POST['status'];
+		$post_status = mysqli_real_escape_string($connection, $_POST['status']);
 
 		$post_img = $_FILES['img']['name'];
 		$post_img_temp = $_FILES['img']['tmp_name'];
@@ -161,11 +160,10 @@
 
 		}
 
-		$post_tags = $_POST['tags'];
-		$post_content = $_POST['content'];
+		$post_tags = mysqli_real_escape_string($connection, $_POST['tags']);
+		$post_content = mysqli_real_escape_string($connection, $_POST['content']);
 		$post_date = date('d-m-y');
-		$post_comment_count = 0;
-
+		
 		$query = "UPDATE posts  ";
 		$query .= "SET post_category_id = $post_category_id, post_title ='$post_title', post_author = '$post_author', post_date = now(), post_img = '$post_img', post_content = '$post_content', post_tag = '$post_tags', post_status = '$post_status' ";
 		$query .= "WHERE post_id = $post_id ";
