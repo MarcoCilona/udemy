@@ -34,6 +34,7 @@
 		}else{
 
 			$_SESSION['user_id'] = $db_id;
+			$_SESSION['user_role'] = $db_role;
 			$_SESSION['username'] = $db_username;
 
 			header("Location: ../admin");

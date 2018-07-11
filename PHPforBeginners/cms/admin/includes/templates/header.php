@@ -24,8 +24,8 @@
 
 <?php 
 
-    if (isset($_SESSION['role'])) {
-        $role_id = $_SESSION['role'];
+    if (isset($_SESSION['user_role'])) {
+        $role_id = $_SESSION['user_role'];
 
         $query = "SELECT role_name FROM role ";
         $query .= "WHERE id = $role_id ";
