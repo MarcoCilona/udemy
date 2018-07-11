@@ -10,6 +10,16 @@
     ob_start(); 
     session_start();
 
+
+    $profile_id = $_SESSION['user_id'];
+
+    $profile_query = "SELECT username FROM users ";
+    $profile_query .= "WHERE id = $profile_id ";
+
+    $user_info = mysqli_query($connection, $profile_query) or die ("Failed to load profile info. <br />Error: " .  mysqli_error($connection));
+
+    $username_to_show = mysqli_fetch_array($user_info)[0];
+
 ?>
 
 <?php 

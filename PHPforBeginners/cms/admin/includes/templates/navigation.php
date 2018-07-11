@@ -120,7 +120,7 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li>
-                        <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                        <a href="./index.html"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
                     <!-- <li>
                         <a href="charts.html"><i class="fa fa-fw fa-bar-chart-o"></i> Charts</a>
@@ -160,7 +160,7 @@
                         <a href="./comments.php"><i class="fa fa-fw fa-file"></i> Comments</a>
                     </li>
                     <li>
-                        <a href="index-rtl.html"><i class="fa fa-fw fa-dashboard"></i> Profile</a>
+                        <a href="./profile.php"><i class="fa fa-fw fa-dashboard"></i> Profile</a>
                     </li>
 
                 </ul>

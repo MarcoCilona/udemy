@@ -115,7 +115,7 @@
 			$result = mysqli_query($connection, $query);
 
 			while($item = mysqli_fetch_assoc($result)){
-				$post_img = $item['img'];
+				$user_img = $item['img'];
 			}
 
 		}
@@ -140,7 +140,6 @@
 			$encrypt_pw = password_hash($user_pw, PASSWORD_DEFAULT, array('cost' => 10));
 
 		}
-
 
 		$update_query = "UPDATE users ";
 		$update_query .= "SET username = '$username', ";
