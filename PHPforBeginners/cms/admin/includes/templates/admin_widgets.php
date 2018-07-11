@@ -1,6 +1,11 @@
        
-                <!-- /.row -->
-                
+<?php
+    
+    include("includes/dashboard_functions.php");
+
+    $post_info = count_information();
+
+?>                
 <div class="row">
     <div class="col-lg-3 col-md-6">
         <div class="panel panel-primary">
@@ -10,7 +15,7 @@
                         <i class="fa fa-file-text fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                  <div class='huge'>12</div>
+                  <div class='huge'><?php echo $post_info['post_rows']; ?></div>
                         <div>Posts</div>
                     </div>
                 </div>
@@ -32,7 +37,7 @@
                         <i class="fa fa-comments fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                     <div class='huge'>23</div>
+                     <div class='huge'><?php echo $post_info['comment_rows']; ?></div>
                       <div>Comments</div>
                     </div>
                 </div>
@@ -54,7 +59,7 @@
                         <i class="fa fa-user fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                    <div class='huge'>23</div>
+                    <div class='huge'><?php echo $post_info['user_rows']; ?></div>
                         <div> Users</div>
                     </div>
                 </div>
@@ -76,7 +81,7 @@
                         <i class="fa fa-list fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class='huge'>13</div>
+                        <div class='huge'><?php echo $post_info['cat_rows']; ?></div>
                          <div>Categories</div>
                     </div>
                 </div>

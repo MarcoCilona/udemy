@@ -16,17 +16,17 @@
                             Welcome to Admin Page, 
                             <small><?php echo $_SESSION['username']; ?></small>
                         </h1>
-<!--                         <ol class="breadcrumb">
-                            <li>
-                                <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
-                            </li>
-                            <li class="active">
-                                <i class="fa fa-file"></i> Blank Page
-                            </li>
-                        </ol> -->
                     </div>
                 </div>
                 <!-- /.row -->
+            <?php 
+
+                /*
+                    @brief Including the template of the widgets.
+                */
+                include("includes/templates/admin_widgets.php");
+
+            ?>
 
             </div>
             <!-- /.container-fluid -->
