@@ -19,14 +19,18 @@
                     </div>
                 </div>
                 <!-- /.row -->
-            <?php 
+                <?php 
 
-                /*
-                    @brief Including the template of the widgets.
-                */
-                include("includes/templates/admin_widgets.php");
+                    /*
+                        @brief Including the template of the widgets.
+                    */
+                    include("includes/templates/admin_widgets.php");
+                                    
+                ?>
 
-            ?>
+                <div class="row">
+                    <div class="col-xs-12" id="columnchart_material" style="height: 500px;"></div>
+                </div>                 
 
             </div>
             <!-- /.container-fluid -->
@@ -39,6 +43,10 @@
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
+    
+    <!-- including google chart -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src ="js/chart.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
