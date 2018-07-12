@@ -9,7 +9,7 @@
   });
 
   var rowsData = [['Data', 'Count']];
-
+  
   $.ajax({
       method: 'POST',
       url: "includes/dashboard_functions.php",
@@ -27,8 +27,8 @@
         })
 
       },
-      error: function (){
-        console.log("Error");
+      error: function (request, status, error){
+        console.log("Error: " + error);
       }
   });
 
@@ -37,9 +37,10 @@
     var data = google.visualization.arrayToDataTable(rowsData);
 
     var options = {
+      legend: {position: 'none'},
       chart: {
-        title: 'Company Performance',
-        subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+        title: 'Number of elements',
+        subtitle: 'Updated to: ' + new Date().toDateString()        
       }
     };
 
