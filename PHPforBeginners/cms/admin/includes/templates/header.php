@@ -10,22 +10,30 @@
     ob_start(); 
     session_start();
 
+    if(isset($_SESSION['user_id'])){
+        
+        $profile_id = $_SESSION['user_id'];
 
-    $profile_id = $_SESSION['user_id'];
+        $profile_query = "SELECT username FROM users ";
+        $profile_query .= "WHERE id = $profile_id ";
 
-    $profile_query = "SELECT username FROM users ";
-    $profile_query .= "WHERE id = $profile_id ";
+        $user_info = mysqli_query($connection, $profile_query) or die ("Failed to load profile info. <br />Error: " .  mysqli_error($connection));
 
-    $user_info = mysqli_query($connection, $profile_query) or die ("Failed to load profile info. <br />Error: " .  mysqli_error($connection));
+        $username_to_show = mysqli_fetch_array($user_info)[0];
 
-    $username_to_show = mysqli_fetch_array($user_info)[0];
+        echo $username_to_show;
+    
+    }else {
 
+        header("Location: ../index.php");
+
+    }
 ?>
 
 <?php 
 
-    if (isset($_SESSION['role'])) {
-        $role_id = $_SESSION['role'];
+    if (isset($_SESSION['user_role'])) {
+        $role_id = $_SESSION['user_role'];
 
         $query = "SELECT role_name FROM role ";
         $query .= "WHERE id = $role_id ";
@@ -34,10 +42,8 @@
 
         $role_name = mysqli_fetch_array($role);
         
-        if($role_name[0] !== 'admin'){
-            header("Location: ../index.php");
-
-        }    
+        if($role_name[0] !== 'admin')
+            header("Location: ../index.php");   
 
     }else{
 

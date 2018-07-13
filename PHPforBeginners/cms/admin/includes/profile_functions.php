@@ -21,7 +21,7 @@
 
 		$new_username = $_POST['profile_username'];
 		$new_firstname = $_POST['profile_first_name'];			
-		$new_secondname = $_POST['profile_second_name'];
+		$new_lastname = $_POST['profile_last_name'];
 		$new_email = $_POST['profile_email'];
 
 		$new_img = $_FILES['profile_img']['name'];
@@ -65,7 +65,7 @@
 		$update_query .= "SET username = '$new_username', ";
 		$update_query .= "password = '$new_password', ";
 		$update_query .= "first_name = '$new_firstname', ";
-		$update_query .= "last_name = '$new_secondname', ";
+		$update_query .= "last_name = '$new_lastname', ";
 		$update_query .= "email = '$new_email', ";
 		$update_query .= "img = '$new_img' ";
 		$update_query .= "WHERE id = $profile_id ";

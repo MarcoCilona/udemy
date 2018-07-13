@@ -14,19 +14,23 @@
                     <div class="col-lg-12">
                         <h1 class="page-header">
                             Welcome to Admin Page, 
-                            <small><?php echo $_SESSION['username']; ?></small>
+                            <small><?php echo $username_to_show; ?></small>
                         </h1>
-<!--                         <ol class="breadcrumb">
-                            <li>
-                                <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
-                            </li>
-                            <li class="active">
-                                <i class="fa fa-file"></i> Blank Page
-                            </li>
-                        </ol> -->
                     </div>
                 </div>
                 <!-- /.row -->
+                <?php 
+
+                    /*
+                        @brief Including the template of the widgets.
+                    */
+                    include("includes/templates/admin_widgets.php");
+                                    
+                ?>
+
+                <div class="row">
+                    <div class="col-xs-12" id="columnchart_material" style="height: 500px;"></div>
+                </div>                 
 
             </div>
             <!-- /.container-fluid -->
@@ -36,13 +40,5 @@
 
     </div>
     <!-- /#wrapper -->
-
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-
-</body>
-
-</html>
+    
+<?php include("includes/templates/footer.php") ?>
