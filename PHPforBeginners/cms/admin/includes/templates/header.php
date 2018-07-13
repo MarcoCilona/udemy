@@ -1,7 +1,6 @@
 <?php 
 
     include_once('../includes/db.php');
-    include('includes/cat_function.php');
 
 ?>
 
@@ -33,6 +32,7 @@
 <?php 
 
     if (isset($_SESSION['user_role'])) {
+        
         $role_id = $_SESSION['user_role'];
 
         $query = "SELECT role_name FROM role ";

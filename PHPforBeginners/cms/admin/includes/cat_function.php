@@ -23,14 +23,30 @@
 
 	// check if admin is trying to delete new category and delete it
 	if(isset($_GET['delete'])){
+		
+		if(isset($_SESSION['user_role'])){
 
-		$item = $_GET['delete'];
+			$role_id = $_SESSION['user_role'];
 
-		$query = "DELETE FROM categories "; 
-		$query .= "WHERE cat_id = '$item'";
-		mysqli_query($connection, $query) or die ("Failed to remove category." . mysqli_error($connection));
+	        $query = "SELECT role_name FROM role ";
+	        $query .= "WHERE id = $role_id ";
 
-		header("Location: categories.php");
+	        $role = mysqli_query($connection, $query) or die("Failed to load role name. <br />Error: " .mysqli_error($connection));
+
+	        $role_name = mysqli_fetch_array($role);
+	        
+	        if($role_name[0] === 'admin'){
+
+				$item = $_GET['delete'];
+
+				$query = "DELETE FROM categories "; 
+				$query .= "WHERE cat_id = '$item'";
+				mysqli_query($connection, $query) or die ("Failed to remove category." . mysqli_error($connection));
+
+				header("Location: categories.php");
+			}
+
+		}
 
 	}
 	

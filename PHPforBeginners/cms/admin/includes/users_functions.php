@@ -63,14 +63,32 @@
 
 	if(isset($_GET['delete_user'])){
 
-		$user_id = $_GET['delete_user'];
+		if(isset($_SESSION['user_role'])){
 
-		$delte_user_query = "DELETE FROM users ";
-		$delte_user_query .= "WHERE id = $user_id ";
+			$role_id = $_SESSION['user_role'];
 
-		mysqli_query($connection, $delte_user_query) or die("Failed to delete user. <br />Error: " . mysqli_error($connection));
+	        $query = "SELECT role_name FROM role ";
+	        $query .= "WHERE id = $role_id ";
 
-		header("Location: users.php");
+	        $role = mysqli_query($connection, $query) or die("Failed to load role name. <br />Error: " .mysqli_error($connection));
+
+	        $role_name = mysqli_fetch_array($role);
+	        
+	        if($role_name[0] === 'admin'){
+
+	        	$user_id = mysqli_real_escape_string($connection, $_GET['delete_user']);
+
+				$delte_user_query = "DELETE FROM users ";
+				$delte_user_query .= "WHERE id = $user_id ";
+
+				mysqli_query($connection, $delte_user_query) or die("Failed to delete user. <br />Error: " . mysqli_error($connection));
+
+				header("Location: users.php");	        	
+
+	        }
+
+		}
+
 	}
 
 	function fill_user_data () {

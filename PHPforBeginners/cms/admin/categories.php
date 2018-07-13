@@ -1,5 +1,10 @@
 
-<?php include('includes/templates/header.php'); ?>
+<?php 
+
+    include('includes/templates/header.php');
+    include('includes/cat_function.php');
+
+?>
    
    <div id="wrapper">
 
