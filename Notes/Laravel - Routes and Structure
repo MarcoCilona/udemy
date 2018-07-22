@@ -5,3 +5,13 @@ In the config folder we have app.php where we register the classe we want to use
 We also have the database connection file, which return an array.
 
 The vendor folder contains all the packages we will install.
+
+
+ROUTES
+
+This files uses the static method Route::get, which takes the url we want to use and a function to return the view for this specific url.
+You can pass parameters to the function by simply including them in the routes url, this way: '/example/{parameter}'
+
+CONTROLLERS
+
+Are "classes" that deals with information coming from databases and pass them to the view. And they can do also viceversa, taking information from the view and passing them to the model.
