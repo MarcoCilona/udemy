@@ -15,3 +15,5 @@ You can pass parameters to the function by simply including them in the routes u
 CONTROLLERS
 
 Are "classes" that deals with information coming from databases and pass them to the view. And they can do also viceversa, taking information from the view and passing them to the model.
+
+namespace: allows us to use same functions and variables name in different parts of the same application without causing any problem. Prevents from having collisions.

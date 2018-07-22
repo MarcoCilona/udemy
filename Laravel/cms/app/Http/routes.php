@@ -15,14 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/contact', function () {
-	return "Hi from contact!";
-});
+/**
+ * Every time we make a request to the url it will call the index method of the PostController.
+ */
+Route::get('/contact/{name?}', 'PostController@show_view');
 
-Route::get('/about/{id}', function ($id) {
-	return "Hi, this is the id you put: " . $id;
-});
-
-Route::get('/admin/about/example', array('as' =>'admin.home', function () {
-	return "Trying naming routes! <br>The url is: " . route('admin.home');
-}));
+/**
+ * Using the resource function to get Laravel to build special routes for us.
+ */
+Route::resource('posts', 'PostController');
