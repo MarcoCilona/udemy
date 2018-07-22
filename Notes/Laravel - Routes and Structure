@@ -1,0 +1,7 @@
+In app >> Http we have Controllers, Middleware, Requests.
+One of the main file is routes.php, in which we create and controll all the routs of the application.
+
+In the config folder we have app.php where we register the classe we want to use from other providers, the plugins we want to use. We register them in this file. 
+We also have the database connection file, which return an array.
+
+The vendor folder contains all the packages we will install.
