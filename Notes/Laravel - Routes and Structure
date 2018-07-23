@@ -1,8 +1,13 @@
 Most used terminal commands:
 
 	php artisan make:controller [--resource] controllerName
+	php artisan migrate
+	php artisan  make:migration create_posts_table --create="posts"php artisan  make:migration create_posts_table --create="posts"
+	php artisan migrate:refresh
+	php artisan migrate:rollback
+	php artisan migrate:reset
 
-
+	
 
 In app >> Http we have Controllers, Middleware, Requests.
 One of the main file is routes.php, in which we create and controll all the routs of the application.
@@ -40,3 +45,6 @@ Some directives:
 
 DATABASE MIGRATIONS
 
+Laravel provides two classes for migration: 
+ 	-	user migration;
+ 	- 	password reset
