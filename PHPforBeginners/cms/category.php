@@ -38,7 +38,7 @@
                     }
 
                     $query = "SELECT * FROM posts ";
-                    $query .= "WHERE post_category_id = $post_category AND post_status = 'finished' ";
+                    $query .= "WHERE post_category_id = $post_category AND post_status = 0 ";
                     $post_results = mysqli_query($connection, $query) or die ("Failed to read data from db. Error: " . mysqli_error($connection));
 
                     while($item = mysqli_fetch_assoc($post_results)){

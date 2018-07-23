@@ -17,10 +17,33 @@
 
 	<div class="form-group">
 		<label for="title">Post Status</label>
-		<input value="<?php echo $post_data['status']; ?>" type="text" class="form-control" name="status">
+		<select class="form-control" name="status">
+
+			<?php 
+
+				$query = "SELECT * FROM post_status ";
+				$category_list = mysqli_query($connection, $query) or die('Failed to read post status.');
+				
+					
+				while ($item = mysqli_fetch_assoc($category_list)){
+					$status_id = $item['post_status_id'];
+					$status_name = $item['status_name'];
+					$selected = "";
+
+					if($post_data['status'] == $status_id)
+						$selected = 'selected';
+
+					echo "<option $selected value='{$status_id}'>{$status_name}</option>";
+
+				}
+
+			?>
+			
+		</select>
 	</div>
 
 	<div class="form-group">
+		<label for="title">Post Category</label>
 		<select class="form-control" name="category">
 
 			<?php 

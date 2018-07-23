@@ -8,9 +8,11 @@
 
 		global $connection; 
 
-		$query_show_posts = "SELECT posts.*, categories.cat_title FROM posts ";
+		$query_show_posts = "SELECT posts.*, categories.cat_title, post_status.status_name FROM posts ";
 		$query_show_posts .= "LEFT JOIN categories ";
 		$query_show_posts .= "ON posts.post_category_id = categories.cat_id ";
+		$query_show_posts .= "LEFT JOIN post_status ";
+		$query_show_posts .= "ON posts.post_status = post_status.post_status_id ";
 
 		$posts = mysqli_query($connection, $query_show_posts) or die ("Failed to return al posts. <br />Error: " . mysqli_error($connection));
 
@@ -24,10 +26,17 @@
 			$post_content = $single_post['post_content'];
 			$post_tag = $single_post['post_tag'];
 			$post_comment_count = $single_post['post_comment_count'];
-			$post_status = $single_post['post_status'];
+			$post_status = $single_post['status_name'];
 			$post_cat_name = $single_post['cat_title'];
 
+
 			echo "<tr>";
+
+			?>
+				<td><input type="checkbox" class="checkBoxes" name="checkBoxArray[]" value="<?php echo $post_id; ?>"></td>
+
+			<?php 
+
 			echo "<td>{$post_id}</td>";
 			echo "<td>{$post_author}</td>";
 			echo "<td>{$post_content}</td>";
@@ -44,7 +53,7 @@
 
 		}
 
-	}
+	}	
 	
 	/*
 		@brief Updates the DB by adding new post.
@@ -172,6 +181,46 @@
 
 		header("Location: ./posts.php");
 			
+
+	}
+
+	if(isset($_POST['apply_action']) && isset($_POST['checkBoxArray'])){
+		
+		foreach ($_POST['checkBoxArray'] as $value) {
+			$bulk_option = $_POST['bulk_option'];
+
+			switch ($bulk_option) {
+
+				case 0:
+						
+					$query = "UPDATE posts SET post_status = 0 ";
+					$query .= "WHERE post_id = $value ";
+
+					mysqli_query($connection, $query) or die(mysqli_error($connection));
+					break;
+
+				case 1:
+						
+					$query = "UPDATE posts SET post_status = 1 ";
+					$query .= "WHERE post_id = $value ";
+
+					mysqli_query($connection, $query) or die(mysqli_error($connection));
+					break;
+
+				case 'delete':
+						
+					$query = "DELETE FROM posts ";
+					$query .= "WHERE post_id = $value ";
+
+					mysqli_query($connection, $query) or die(mysqli_error($connection));
+					break;
+
+								
+				default:
+					# code...
+					break;
+			}
+		}
 
 	}
 	

@@ -35,7 +35,7 @@
                         $post_id = $_GET['id'];
 
                     $query = "SELECT * FROM posts ";
-                    $query .= "WHERE post_id = $post_id AND post_status = 'finished' ";
+                    $query .= "WHERE post_id = $post_id AND post_status = 0 ";
 
                     $post_results = mysqli_query($connection, $query) or die ("Failed to read data from db. Error: " . mysqli_error($connection));
 

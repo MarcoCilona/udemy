@@ -1,8 +1,9 @@
 (function (){
 
-  google.charts.load('current', {'packages':['bar']});
-  google.charts.setOnLoadCallback(drawChart);
-
+  if($('#columnchart_material').length) {
+    google.charts.load('current', {'packages':['bar']});
+    google.charts.setOnLoadCallback(drawChart);
+  }
   //redraw graph when window resize is completed  
   $(window).on('resize', function() {
       drawChart();
@@ -48,4 +49,6 @@
 
     chart.draw(data, google.charts.Bar.convertOptions(options));
   }
+
+
 })();
