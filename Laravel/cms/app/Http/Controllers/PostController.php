@@ -91,7 +91,7 @@ class PostController extends Controller
      */
     public function show_view($name='New User') {
 
-        return view('contactView', ['name' => $name]);
+        return view('contactView', compact('name'));
 
     }
 }
