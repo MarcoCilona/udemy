@@ -1,8 +1,11 @@
 Most used terminal commands:
+	
+	composer create-project --prefer-dist laravel/laravel projectName (laravel version)
 
 	php artisan make:controller [--resource] controllerName
 	php artisan migrate
-	php artisan  make:migration create_posts_table --create="posts"php artisan  make:migration create_posts_table --create="posts"
+	php artisan make:migration create_posts_table --create="posts"
+	php artisan make:migration create_posts_table --create="posts"
 	php artisan migrate:refresh
 	php artisan migrate:rollback
 	php artisan migrate:reset
