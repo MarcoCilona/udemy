@@ -40,5 +40,9 @@
 
     </div>
     <!-- /#wrapper -->
-    
+
 <?php include("includes/templates/footer.php") ?>
+
+<!-- including google chart -->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src ="js/chart.js"></script>

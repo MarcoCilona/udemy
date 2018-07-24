@@ -39,8 +39,8 @@
 
 			echo "<td>{$post_id}</td>";
 			echo "<td>{$post_author}</td>";
+			echo "<td><a href=\"../post.php?id={$post_id}\">{$post_title}</a></td>";
 			echo "<td>{$post_content}</td>";
-			echo "<td>{$post_title}</td>";
 			echo "<td>{$post_cat_name}</td>";
 			echo "<td>{$post_status}</td>";
 			echo "<td><img class='img-responsive' src='../images/$post_img' /></td>";
@@ -191,15 +191,15 @@
 
 			switch ($bulk_option) {
 
-				case 0:
-						
+				case "0":
+					
 					$query = "UPDATE posts SET post_status = 0 ";
 					$query .= "WHERE post_id = $value ";
 
 					mysqli_query($connection, $query) or die(mysqli_error($connection));
 					break;
 
-				case 1:
+				case "1":
 						
 					$query = "UPDATE posts SET post_status = 1 ";
 					$query .= "WHERE post_id = $value ";
@@ -207,8 +207,8 @@
 					mysqli_query($connection, $query) or die(mysqli_error($connection));
 					break;
 
-				case 'delete':
-						
+				case "delete":
+					
 					$query = "DELETE FROM posts ";
 					$query .= "WHERE post_id = $value ";
 
@@ -217,7 +217,7 @@
 
 								
 				default:
-					# code...
+	
 					break;
 			}
 		}

@@ -70,3 +70,7 @@
 	</div>
 
 </form>
+
+<!-- ckeditor -->
+<script src="../cmk/ckeditor/ckeditor.js"></script>
+<script src="js/ckeditor.js"></script>

@@ -19,8 +19,6 @@
         $user_info = mysqli_query($connection, $profile_query) or die ("Failed to load profile info. <br />Error: " .  mysqli_error($connection));
 
         $username_to_show = mysqli_fetch_array($user_info)[0];
-
-        echo $username_to_show;
     
     }else {
 

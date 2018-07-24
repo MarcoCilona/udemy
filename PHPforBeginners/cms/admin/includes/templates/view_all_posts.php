@@ -1,6 +1,6 @@
 <div class="table-responsive">
-	<form action="" method="POST">
-		<div style ="margin-bottom: 10px" id="bulkOptionsContainer" class="col-xs-4 marginCustom">
+	<form id="bulk_submit" action="" method="POST">
+		<div id="bulkOptionsContainer" class="col-xs-4">
 			<select class="col-xs-4 form-control" name="bulk_option">
 				<?php 
 
@@ -32,11 +32,11 @@
 		<table class="table table-bordered table-hover">
 			<thead>
 				<tr>
-					<th><input type="checkbox" name="selectAllPosts">
+					<th><input type="checkbox" name="selectAllPosts" id="selectAllPosts">
 					<th>ID</th>
 					<th>Author</th>
-					<th>Content</th>
 					<th>Title</th>
+					<th>Content</th>
 					<th>Category</th>
 					<th>Status</th>
 					<th>Image</th>
