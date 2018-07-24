@@ -57,3 +57,7 @@ DATABASE MIGRATIONS
 Laravel provides two classes for migration: 
  	-	user migration;
  	- 	password reset
+
+DB QUERY
+
+When reading data from a db, the result is given to us has a generic class so that we can access information like class properties.
