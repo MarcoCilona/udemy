@@ -20,6 +20,7 @@
 				?>
 				
 				<option value="delete">Delete</option>
+				<option value="clone">Clone</option>
 			</select>
 		</div>
 		<div class="form-group col-xs-4">

@@ -29,16 +29,14 @@
                 </h1>
 
                  
-                <?php
+                <?php 
 
-                    if(isset($_GET['cat'])){
-
-                        $post_category = $_GET['cat'];
-
-                    }
+                    if(isset($_GET['author_name']))
+                        $post_author = $_GET['author_name'];
 
                     $query = "SELECT * FROM posts ";
-                    $query .= "WHERE post_category_id = $post_category AND post_status = 0 ";
+                    $query .= "WHERE post_author = '$post_author' AND post_status = 0 ";
+
                     $post_results = mysqli_query($connection, $query) or die ("Failed to read data from db. Error: " . mysqli_error($connection));
 
                     while($item = mysqli_fetch_assoc($post_results)){
@@ -48,7 +46,7 @@
                         $post_author = $item['post_author'];
                         $post_date = $item['post_date'];
                         $post_img = $item['post_img'];
-                        $post_content = substr($item['post_content'], 0, 200);
+                        $post_content = $item['post_content'];
 
                         ?>
 
@@ -57,7 +55,7 @@
                             <a href="post.php?id=<?php echo $post_id; ?>"><?php echo $post_title; ?></a>
                         </h2>
                         <p class="lead">
-                            by <a href="user_related_posts.php?author_name=<?php echo $post_author; ?>"><?php echo $post_author; ?></a>
+                            by <a href="#"><?php echo $post_author; ?></a>
                         </p>
                         <p><span class="glyphicon glyphicon-time"></span> <?php echo $post_date; ?></p>
                         <hr>
@@ -66,7 +64,6 @@
                         </a>
                         <hr>
                         <p><?php echo $post_content; ?></p>
-                        <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
 
                         <hr>                   
                 

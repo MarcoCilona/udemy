@@ -184,6 +184,9 @@
 
 	}
 
+	/**
+	 * Bulk options handler. Functionalities are: switch status, deleting, cloning posts.
+	 */
 	if(isset($_POST['apply_action']) && isset($_POST['checkBoxArray'])){
 		
 		foreach ($_POST['checkBoxArray'] as $value) {
@@ -214,6 +217,17 @@
 
 					mysqli_query($connection, $query) or die(mysqli_error($connection));
 					break;
+
+				case "clone":
+					
+					$query = "INSERT INTO posts ";
+					$query .= " (post_category_id, post_title, post_author, post_date, post_img, post_content, post_tag, post_status) ";
+					$query .= "SELECT post_category_id, post_title, post_author, post_date, post_img, post_content, post_tag, post_status ";
+					$query .= "FROM posts ";
+					$query .= "WHERE post_id = $value ";
+
+					mysqli_query($connection, $query) or die(mysqli_error($connection));
+					break;				
 
 								
 				default:

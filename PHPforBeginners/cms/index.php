@@ -51,7 +51,7 @@
                             <a href="post.php?id=<?php echo $post_id; ?>"><?php echo $post_title; ?></a>
                         </h2>
                         <p class="lead">
-                            by <a href="index.php"><?php echo $post_author; ?></a>
+                            by <a href="user_related_posts.php?author_name=<?php echo $post_author; ?>"><?php echo $post_author; ?></a>
                         </p>
                         <p><span class="glyphicon glyphicon-time"></span> <?php echo $post_date; ?></p>
                         <hr>
