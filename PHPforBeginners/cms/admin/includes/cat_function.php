@@ -80,7 +80,7 @@
             echo "<tr>";
             echo "<td>{$category['cat_id']}</td>";
             echo "<td>{$category['cat_title']}</td>";
-            echo "<td><a href='categories.php?delete={$category['cat_id']}'>Delete</a></td>";
+            echo "<td><a onclick=\"javascript: return confirm('Are you sure you want to delete this category?');\" href='categories.php?delete={$category['cat_id']}'>Delete</a></td>";
             echo "<td><a href='categories.php?update={$category['cat_id']}'>Update</a></td>";
             echo "</tr>";
 

@@ -48,7 +48,7 @@
 			echo "<td>{$post_date}</td>";
 			echo "<td>{$post_comment_count}</td>";
 			echo "<td><a href=\"posts.php?source=edit&id={$post_id}\">Edit</a></td>";
-			echo "<td><a href=\"posts.php/?source=delete&id=$post_id\">Delete</a></td>";
+			echo "<td><a onclick=\"javascript: return confirm('Are you sure you want to delete this post?');\" href=\"posts.php/?source=delete&id=$post_id\">Delete</a></td>";
 			echo "</tr>";
 
 		}

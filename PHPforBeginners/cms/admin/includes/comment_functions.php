@@ -35,7 +35,7 @@
 			echo "<td><a href=\"../post.php?id={$comm_post_id}\">{$comm_related_post}</a></td>";
 			echo "<td><a href=\"comments.php?approve={$id}\">Approve</a></td>";
 			echo "<td><a href=\"comments.php?unapprove={$id}\">Unapprove</a></td>";
-			echo "<td><a href=\"comments.php?delete_comment={$id}&post={$comm_post_id}\">Delete</a></td>";
+			echo "<td><a onclick=\"javascript: return confirm('Are you sure you want to delete this comment?');\" href=\"comments.php?delete_comment={$id}&post={$comm_post_id}\">Delete</a></td>";
 
 
 		}
