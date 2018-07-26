@@ -19,6 +19,9 @@
 
 	}
 
+	/**
+	 * Function related to the ajax call made in the chart.js file.
+	 */
 	if(isset($_POST['dashboard_action'])){
 
 		include_once('../../includes/db.php');

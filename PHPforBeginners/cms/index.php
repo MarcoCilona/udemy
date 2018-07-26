@@ -30,9 +30,39 @@
 
                  
                 <?php 
+                   
+                    $per_page = 5;
+                   
+                    /**
+                     * PAGINATION
+                     * Counting out the number of posts saved on the DB.
+                     * Setting the number of posts to show per page.
+                     * 
+                     */
+                    $count_post_query = "SELECT COUNT(post_id) as posts_count FROM posts ";
+                    $count = mysqli_query($connection, $count_post_query);
+                    $number_of_posts = mysqli_fetch_assoc($count);
 
+                    $number_of_pages = ceil($number_of_posts['posts_count']/$per_page);
+
+                    if(isset($_GET['page'])){
+
+                        $page = $_GET['page'];
+                        $page_1 = ($page * $per_page) - 5;
+
+                    }else{
+
+                        $page = 1;
+                        $page_1 = 0;
+
+                    }
+
+                    /**
+                     * Returning all the posts saved and ready to be published.
+                     */
                     $query = "SELECT * FROM posts ";
                     $query .= "WHERE post_status = 0 ";
+                    $query .= "LIMIT $page_1, 5 ";
                     $post_results = mysqli_query($connection, $query) or die ("Failed to read data from db. Error: " . mysqli_error($connection));
 
                     while($item = mysqli_fetch_assoc($post_results)){
@@ -72,11 +102,25 @@
 
                 <!-- Pager -->
                 <ul class="pager">
+                    <?php 
+
+                        for ($i=1; $i <= $number_of_pages; $i++) { 
+                            
+                            ?>
+                            <li>
+                                <a href="index.php?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+                            </li>
+
+                            <?php
+                        }
+
+                    ?>
+  
                     <li class="previous">
-                        <a href="#">&larr; Older</a>
+                        <a href="index.php?page=<?php echo ($page-1 >= 1) ? $page-1 : $page; ?>">&larr; Prev</a>
                     </li>
                     <li class="next">
-                        <a href="#">Newer &rarr;</a>
+                        <a href="index.php?page=<?php echo ($page+1 <= $number_of_pages) ? $page+1 : $page; ?>">Next &rarr;</a>
                     </li>
                 </ul>
 
