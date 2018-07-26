@@ -62,9 +62,9 @@
 	}
 
 	if(isset($_GET['delete_user'])){
-
+		
 		if(isset($_SESSION['user_role'])){
-
+			echo "in";
 			$role_id = $_SESSION['user_role'];
 
 	        $query = "SELECT role_name FROM role ";
@@ -172,6 +172,46 @@
 		mysqli_query($connection, $update_query) or die ("Failed to update user info. <br />Error: " . mysqli_error($connection));
 
 		header("Location: users.php");
+	}
+
+	if(isset($_POST['online_users'])){
+
+		include_once('../../includes/db.php');
+		session_start();
+		/**
+	     * Checking if someone is online. If not insert new online user.
+	     * @var [type]
+	     */
+	    $session = session_id();
+	    $time = time(); //< current time
+	    $time_out_in_seconds = 60;  //< setting time out length in seconds
+	    $time_out = $time - $time_out_in_seconds; //<
+
+	    $query = "SELECT * FROM users_online ";
+	    $query .= "WHERE session = '$session' ";
+	    $users = mysqli_query($connection, $query);
+	    $count = mysqli_num_rows($users);
+
+	    /**
+	     * If new access insert in the db.
+	     * If already registered update time activity.
+	     * The users online are only the ones active.
+	     * @var [type]
+	     */
+	    if($count == NULL){
+	       
+	        mysqli_query($connection, "INSERT INTO users_online(session, time) VALUES ('$session', $time)");
+
+	    }else{
+	        
+	        mysqli_query($connection, "UPDATE users_online SET time = $time WHERE session = '$session' ");
+
+	    }
+	    
+	    $query_users = mysqli_query($connection, "SELECT * FROM users_online WHERE time > $time_out ");
+	    
+	    echo $count_users = mysqli_num_rows($query_users);
+
 	}
 
 

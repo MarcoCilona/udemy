@@ -2,7 +2,7 @@
 
 	include('includes/templates/header.php');
 	include('includes/templates/navigation.php');
-	include('includes/users_functions.php');
+	
 
 ?>   
 <div id="wrapper">

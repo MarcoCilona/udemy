@@ -1,8 +1,4 @@
-<?php 
-
-    include_once('../includes/db.php');
-
-?>
+<?php include_once('../includes/db.php'); ?>
 
 <?php 
     
@@ -50,6 +46,8 @@
     } 
 
 ?>
+
+<?php include_once('includes/users_functions.php'); ?>
 
 <!DOCTYPE html>
 <html lang="en">

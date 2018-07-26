@@ -26,5 +26,35 @@ $(function () {
 
 	});
 
+	/**
+	 * Ajax request to get online users.
+	 * @return {[type]} [description]
+	 */
+	function loadUsersOnline () {
+
+		$.ajax({
+			method: 'POST',
+			url: 'includes/users_functions.php',
+			data: {
+				online_users: 'true'
+			},
+			success: function (data) {
+				$(".usersonline").text(data);
+				console.log('s');
+			},
+			error: function (){
+				console.log('error');
+			}
+		});
+
+
+	}
+
+	setInterval(function (){
+		loadUsersOnline();
+	}, 500);
+
+
+
 
 });
