@@ -7,6 +7,9 @@
 	*/
 	if(isset($_POST['submit_comment'])){
 
+		/**
+		 * Adding new comment to the db table.
+		 */
 		$comment_post_id = mysqli_real_escape_string($connection, $_GET['id']);
 		$comment_day = date('d-m-y');		
 		$comment_author = mysqli_real_escape_string($connection, $_POST['comm_author']);
@@ -17,12 +20,6 @@
 		$query .= "VALUES ($comment_post_id, now(), '$comment_author', '$comment_email', '$comment_content') ";
 
 		mysqli_query($connection, $query) or die("Failed to save new comment. <br />Error: " . mysqli_error($connection));
-
-		$query = "UPDATE posts ";
-		$query .= "SET post_comment_count = post_comment_count + 1 ";
-		$query .= "WHERE post_id = $comment_post_id ";
-
-		mysqli_query($connection, $query) or die ("Unable to update post comment counter. <br />Error: " . mysqli_error($connection));
 
 		header("Location: post.php?id=$comment_post_id");
 

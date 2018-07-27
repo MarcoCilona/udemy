@@ -8,6 +8,9 @@
 
 		global $connection; 
 
+		/**
+		 * Query to retrieve all posts in the DB.
+		 */
 		$query_show_posts = "SELECT posts.*, categories.cat_title, post_status.status_name FROM posts ";
 		$query_show_posts .= "LEFT JOIN categories ";
 		$query_show_posts .= "ON posts.post_category_id = categories.cat_id ";
@@ -17,6 +20,7 @@
 		$posts = mysqli_query($connection, $query_show_posts) or die ("Failed to return al posts. <br />Error: " . mysqli_error($connection));
 
 		while($single_post = mysqli_fetch_assoc($posts)){
+
 			$post_id = $single_post['post_id'];
 			$post_category_id = $single_post['post_category_id'];
 			$post_title = $single_post['post_title'];
@@ -25,11 +29,21 @@
 			$post_img = $single_post['post_img'];
 			$post_content = $single_post['post_content'];
 			$post_tag = $single_post['post_tag'];
-			$post_comment_count = $single_post['post_comment_count'];
+			//$post_comment_count = $single_post['post_comment_count'];
 			$post_status = $single_post['status_name'];
 			$post_cat_name = $single_post['cat_title'];
 
 
+			/**
+			 * Query to return the number of comment for this specific post.
+			 */
+			$query_num_comments = "SELECT * FROM comments WHERE comment_post_id = $post_id ";
+			$query_result = mysqli_query($connection, $query_num_comments) or die("Failed to retrive number of comments. <br />Error: " . mysqli_error($connection));
+			$comm_num = mysqli_num_rows($query_result);
+
+			/**
+			 * Displayin the result in the HTML table.
+			 */
 			echo "<tr>";
 
 			?>
@@ -46,7 +60,7 @@
 			echo "<td><img class='img-responsive' src='../images/$post_img' /></td>";
 			echo "<td>{$post_tag}</td>";
 			echo "<td>{$post_date}</td>";
-			echo "<td>{$post_comment_count}</td>";
+			echo "<td>{$comm_num}</td>";
 			echo "<td><a href=\"posts.php?source=edit&id={$post_id}\">Edit</a></td>";
 			echo "<td><a onclick=\"javascript: return confirm('Are you sure you want to delete this post?');\" href=\"posts.php/?source=delete&id=$post_id\">Delete</a></td>";
 			echo "</tr>";

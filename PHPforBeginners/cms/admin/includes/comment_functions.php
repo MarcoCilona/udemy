@@ -57,13 +57,6 @@
 
 			mysqli_query($connection, $query) or die ("Unable to delete comment. <br />Error: " . mysqli_error($connection));
 
-			$post_id = $_GET['post'];
-			$decrease_query = "UPDATE posts ";
-			$decrease_query .= "SET post_comment_count = post_comment_count - 1 ";
-			$decrease_query .= "WHERE post_id =  $post_id ";
-
-			mysqli_query($connection, $decrease_query) or die("Unable to update comment post counter. <br />Error: " . mysqli_error($connection));
-
 			header("Location: comments.php");
 		}
 
