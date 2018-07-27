@@ -27,8 +27,11 @@
                         <a href="admin">Admin</a>
                     </li>
                     <li>
-                        <a href="registration.php">Subscribe</a>
-                    </li>                    
+                        <a href="registration.php">Subs</a>
+                    </li>
+                    <li>
+                        <a href="contact.php">Contact</a>
+                    </li>                  
 <!--                     <li>
                         <a href="#">Services</a>
                     </li>

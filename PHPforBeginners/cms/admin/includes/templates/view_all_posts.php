@@ -27,7 +27,7 @@
 			<input type="submit" class="form-control btn btn-primary" value="Apply" name="apply_action">
 		</div>
 		<div class="form-group col-xs-4">
-			<input type="submit" class="form-control btn btn-success" value="Add Post" name="submit_add_post">
+			<a href="posts.php?source=add" class="form-control btn btn-success" value="Add Post">Add Post</a>
 		</div>		
 		
 		<table class="table table-bordered table-hover">

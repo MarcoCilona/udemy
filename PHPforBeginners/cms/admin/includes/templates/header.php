@@ -1,8 +1,8 @@
+<?php ob_start();  ?>
 <?php include_once('../includes/db.php'); ?>
 
 <?php 
-    
-    ob_start(); 
+        
     session_start();
 
     if(isset($_SESSION['user_id'])){
