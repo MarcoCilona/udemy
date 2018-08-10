@@ -1,20 +1,22 @@
 Most used terminal commands:
 
 	// create new project	
-	composer create-project --prefer-dist laravel/laravel projectName (laravel version
+	composer create-project --prefer-dist laravel/laravel projectName (laravel version)
 
 	// initialize existing project
 	composer install
 	php artisan key:generate
 
+	// commands for MVC
 	php artisan make:controller [--resource] controllerName
+	php artisan make:model Post
 	
 	// database migration commands
-	php artisan migrate
+	php artisan migrate //< create the tables into the connected DB
 	php artisan make:migration create_posts_table --create="posts"
-	php artisan migrate:refresh
-	php artisan migrate:rollback
-	php artisan migrate:reset
+	php artisan migrate:refresh //< reset and re-run all migrations
+	php artisan migrate:rollback //< rollback the last database migration
+	php artisan migrate:reset //< rollback all database migrations
 
 	
 
@@ -58,6 +60,23 @@ Laravel provides two classes for migration:
  	-	user migration;
  	- 	password reset
 
+The following commands lets you add a column to an existing table with data already in it.
+
+	php artisan make:migration add_is_admin_column_to_posts_tables --table="posts"
+
+To delet a migration you cannot just delete the file from the folder. You have to reset and then delete the file but doing so you will lose all the records and tables.
+
 DB QUERY
 
 When reading data from a db, the result is given to us has a generic class so that we can access information like class properties.
+
+ELOQUENT
+
+The model is a class that deals with the database. When creating a new model it gets located in the 'app' folder. 
+The artisan command takes the name provided and make it lowercase and plural.
+
+ORM -> Object-Relational Mapping
+
+The save method allows you to insert new records or to update an existing one.
+
+Using softDeletes, when you perform a delete on a record it will not be permanently deleted but it will be trashed ready to be restore if needed. You can also delete permanently a trashed element using the forceDelete() method.
