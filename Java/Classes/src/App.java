@@ -5,32 +5,36 @@
  * 2. Subroutines (methods)
  */
 class Person {
-	
+
 	// Instance variable are data or "state"
 	private String name;
 	private int age;
 	
-	public void setName (String name) {
+	public Person(String name, int age) {
+		this.name = name;
+		this.age = age;
+	}
+
+	public void setName(String name) {
 		this.name = name;
 	}
-	
-	public String getName () {
+
+	public String getName() {
 		return this.name;
 	}
-		
+
 }
 
 public class App {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-	
+
 		// Using Person class to create an obj
-		Person firstPerson = new Person();
-		firstPerson.setName("Camillina");
+		Person firstPerson = new Person("Camilla", 5);
 		
 		System.out.println("Hello " + firstPerson.getName());
-		
+
 	}
 
 }
