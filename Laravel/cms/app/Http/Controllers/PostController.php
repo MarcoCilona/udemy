@@ -85,7 +85,7 @@ class PostController extends Controller
     }
 
     /**
-     * Function to retunr a view for the contact url
+     * Function to return a view for the contact url
      * @param  string $name Name of the person passed by the route. 
      * @return View
      */

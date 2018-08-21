@@ -3,6 +3,9 @@ Most used terminal commands:
 	// create new project	
 	composer create-project --prefer-dist laravel/laravel projectName (laravel version)
 
+	//clear
+	composer dump-autoload
+
 	// initialize existing project
 	composer install
 	php artisan key:generate
@@ -64,7 +67,9 @@ The following commands lets you add a column to an existing table with data alre
 
 	php artisan make:migration add_is_admin_column_to_posts_tables --table="posts"
 
-To delet a migration you cannot just delete the file from the folder. You have to reset and then delete the file but doing so you will lose all the records and tables.
+After running this command modify the created file and the run the migrate command.
+
+To delete a migration you cannot just delete the file from the folder. You have to reset and then delete the file but doing so you will lose all the records and tables.
 
 DB QUERY
 
@@ -80,3 +85,8 @@ ORM -> Object-Relational Mapping
 The save method allows you to insert new records or to update an existing one.
 
 Using softDeletes, when you perform a delete on a record it will not be permanently deleted but it will be trashed ready to be restore if needed. You can also delete permanently a trashed element using the forceDelete() method.
+
+Laravel has different relationship models:
+	- one to one ---> hasOne()/belongsTo()
+	- one to many ---> hasMany()/belongsToMany()
+	- many to many

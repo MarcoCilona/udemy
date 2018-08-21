@@ -1,5 +1,7 @@
 <?php
 	use App\Post;
+	use App\User;
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -110,7 +112,7 @@ Route::get('/updateEl', function (){
  */
 Route::get('/create', function (){
 
-	Post::create(['title' => 'Create Method', 'content' => 'Create Content']);
+	Post::create(['title' => 'Create Relation', 'content' => 'One to one', 'user_id' => 1]);
 
 });
 
@@ -166,9 +168,46 @@ Route::get('/restore', function () {
 /**
  * Permanently deleting a trashed record.
  */
-Route::get('permDelete', function () {
+Route::get('/permDelete', function () {
 
 	Post::withTrashed()->where('id', 6)->forceDelete();
 
 });
 
+Route::get('/createUser', function (){
+
+	User::create(['name'=>'Anna', 'email' => 'test@test.it', 'password' => '123']);
+
+});
+	
+/**
+ * ELOQUENT RELATIONSHIPS
+ */
+
+/**
+ * Retrieving the post of the indicated user.
+ */
+Route::get('/oneToOne/user/{id}/post', function ($id) {
+
+	return User::find($id)->post;
+
+});
+
+Route::get('oneToMany/posts', function () {
+
+	$user = User::find(1);
+
+	foreach ($user->posts as $post) {
+		echo $post;
+	}
+
+});
+
+Route::get('manyToMany/user/{id}/role', function ($id) {
+
+	$user = User::find($id)->roles;
+
+	foreach ($user as $u) {
+		echo $u->name;
+	}
+});

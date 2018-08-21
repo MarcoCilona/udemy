@@ -23,4 +23,23 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function post(){
+        /**
+         * The first parameter passed is the name of the related model. Once the relationship is defined we may retrieve the related record using Eloquent's dynamic properties. Eloquent determines the foreign key of the relationship.
+         */
+        return $this->hasOne('App\Post');
+
+    }
+
+    public function posts() {
+
+        return $this->hasMany('App\Post');
+    }
+
+    public function roles() {
+
+        return $this->belongsToMany('App\Role');
+
+    }
 }

@@ -13,8 +13,15 @@ class Post extends Model
 
 	protected $table = 'posts';
 
+	/**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
 	protected $fillable = [
 		'title',
-		'content'
+		'content',
+		'user_id'
 	];
+
 }
