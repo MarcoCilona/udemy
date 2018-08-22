@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddUserIdColumnToPostsTable extends Migration
+class AddCountryIdColumnToUsers extends Migration
 {
     /**
      * Run the migrations.
@@ -12,8 +12,8 @@ class AddUserIdColumnToPostsTable extends Migration
      */
     public function up()
     {
-        Schema::table('posts', function (Blueprint $table) {
-            $table->integer('user_id')->unisgned();
+        Schema::table('users', function (Blueprint $table) {
+            $table->integer('country_id');
         });
     }
 
@@ -24,8 +24,8 @@ class AddUserIdColumnToPostsTable extends Migration
      */
     public function down()
     {
-        Schema::table('posts', function (Blueprint $table) {
-            $table->dropColumn('user_id');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('country_id');
         });
     }
 }

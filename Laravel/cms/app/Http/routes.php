@@ -1,6 +1,7 @@
 <?php
 	use App\Post;
 	use App\User;
+	use App\Country;
 
 /*
 |--------------------------------------------------------------------------
@@ -112,7 +113,7 @@ Route::get('/updateEl', function (){
  */
 Route::get('/create', function (){
 
-	Post::create(['title' => 'Create Relation', 'content' => 'One to one', 'user_id' => 1]);
+	Post::create(['title' => 'Create Relation', 'content' => 'One to one']);
 
 });
 
@@ -186,14 +187,19 @@ Route::get('/createUser', function (){
 
 /**
  * Retrieving the post of the indicated user.
+ *
+ * p.s.: now is not working because we are using polymorphic methods.
  */
-Route::get('/oneToOne/user/{id}/post', function ($id) {
+/*Route::get('/oneToOne/user/{id}/post', function ($id) {
 
 	return User::find($id)->post;
 
-});
+});*/
 
-Route::get('oneToMany/posts', function () {
+/**
+ * p.s.: now is not working because we are using polymorphic methods.
+ */
+/*Route::get('/oneToMany/posts', function () {
 
 	$user = User::find(1);
 
@@ -201,13 +207,48 @@ Route::get('oneToMany/posts', function () {
 		echo $post;
 	}
 
-});
+});*/
 
-Route::get('manyToMany/user/{id}/role', function ($id) {
+Route::get('/manyToMany/user/{id}/role', function ($id) {
 
 	$user = User::find($id)->roles;
 
 	foreach ($user as $u) {
 		echo $u->name;
 	}
+});
+
+/**
+ * Has many through relationship
+ *
+ * p.s.: now is not working because we are using polymorphic methods.
+ */
+/*Route::get('/through', function (){
+
+	$country = Country::find(1);
+
+	foreach ($country->posts as $post) {
+		echo $post->content . '<br />';
+	}
+
+});
+*/
+Route::get('/polymorphic', function (){
+
+	$photo = User::find(1)->photos;
+
+	foreach ($photo as $item) {
+			echo $item->path;
+		}	
+
+});
+
+Route::get('/polymorphic/posts', function (){
+
+	$photo = Post::find(1)->photos;
+
+	foreach ($photo as $item) {
+			echo $item->path;
+		}	
+
 });

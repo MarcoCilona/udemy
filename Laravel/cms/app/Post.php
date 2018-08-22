@@ -20,8 +20,13 @@ class Post extends Model
      */
 	protected $fillable = [
 		'title',
-		'content',
-		'user_id'
+		'content'
 	];
+
+	public function photos() {
+
+        return $this->morphMany('App\Photo', 'imageable');
+
+    }
 
 }
