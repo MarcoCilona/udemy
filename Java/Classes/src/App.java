@@ -8,11 +8,8 @@ class Person {
 
 	// Instance variable are data or "state"
 	private String name;
-	private int age;
-	
 	public Person(String name, int age) {
 		this.name = name;
-		this.age = age;
 	}
 
 	public void setName(String name) {
@@ -30,11 +27,15 @@ public class App {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		// Using Person class to create an obj
-		Person firstPerson = new Person("Camilla", 5);
+		Machine machine1 = new Machine();
 		
-		System.out.println("Hello " + firstPerson.getName());
-
+		machine1.start();
+		machine1.stop();
+		
+		Car car1 = new Car();
+		car1.start();
+		car1.wipeWindShield();
+		car1.stop();
 	}
 
 }
