@@ -2,6 +2,8 @@
 	use App\Post;
 	use App\User;
 	use App\Country;
+	use App\Photo;
+	use App\Video;
 
 /*
 |--------------------------------------------------------------------------
@@ -250,5 +252,30 @@ Route::get('/polymorphic/posts', function (){
 	foreach ($photo as $item) {
 			echo $item->path;
 		}	
+
+});
+
+
+/**
+ * Here we are founding the "owner" of the photo with id = 1
+ */
+Route::get('/polymorphic/photo/{id}/post', function ($id) {
+
+	$photo = Photo::findOrFail($id);
+
+	return $photo->imageable;
+
+});
+
+/**
+ * Many to many polymorphic.
+ */
+Route::get('/polymorphic/mTm', function() {
+
+	$post = Video::findOrFail(1);
+
+	foreach ($post->tags as $value) {
+		echo $value->name;
+	}
 
 });
