@@ -114,3 +114,5 @@ With tinker you can do all the CRUD operations just you will normally do when co
 ELOQUENT ONE TO ONE
 
 You can relate one model to onother using hasOne() and belongsTo() methods in the two model.
+
+ELOQUENT ONE TO MANY
