@@ -23,4 +23,13 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Function for the one to one relation
+     */
+    public function address(){
+
+        return $this->hasOne('App\Address');
+
+    }
 }
