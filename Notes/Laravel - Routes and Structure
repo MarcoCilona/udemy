@@ -90,3 +90,22 @@ Laravel has different relationship models:
 	- one to one ---> hasOne()/belongsTo()
 	- one to many ---> hasMany()/belongsToMany()
 	- many to many
+
+
+TINKER
+
+With Tinker we can do all the CRUD operation through the terminal.
+
+Access Tinker:
+
+	php artisan tinker
+
+Create record:
+	
+	$post = App\ModelName::create();
+
+	$post = new App\ModelName
+	$post->columName = value;
+	$post->save();
+
+With tinker you can do all the CRUD operations just you will normally do when coding
