@@ -48,4 +48,25 @@ class User extends Authenticatable
         return $this->morphMany('App\Photo', 'imageable');
 
     }
+
+    /**
+     * Modify the value returned.
+     * @param  [type] $value [description]
+     * @return [type]        [description]
+     */
+    public function getNameAttribute($value) {
+
+        return strtoupper($value);
+
+    }
+
+    /**
+     * Manipulate data before they get saved on the DB.
+     * @param [type] $value [description]
+     */
+    public function setNameAttribute($value){
+
+        $this->attributes['name'] = strtoupper($value);
+
+    }
 }

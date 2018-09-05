@@ -13,6 +13,8 @@ class Post extends Model
 
 	protected $table = 'posts';
 
+    public $directory = '/images/';
+
 	/**
      * The attributes that are mass assignable.
      *
@@ -20,7 +22,8 @@ class Post extends Model
      */
 	protected $fillable = [
 		'title',
-		'content'
+		'content',
+        'path'
 	];
 
 	public function photos() {
@@ -32,6 +35,29 @@ class Post extends Model
     public function tags() {
 
     	return $this->morphToMany('App\Tag', 'taggable');
+
+    }
+
+    /**
+     * Creating a query scope. Its a static function, the 'scope' word is a convention and has to be put always before the name we want to give to the function.
+     To call this query you have to use only the function name without 'scope'. 
+     ex.: Post::latest()
+     * @return [type] [description]
+     */
+    public static function scopeLatest($query) {
+
+        return $query->orderBy('title', 'asc')->get();
+
+    }
+
+    /**
+     * Usign accessor to set the path for getting the images.
+     * @param  [type] $value [description]
+     * @return [type]        [description]
+     */
+    public function getPathAttribute($value) {
+
+        return $this->directory.$value;
 
     }
 
