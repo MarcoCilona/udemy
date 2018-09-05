@@ -5,6 +5,8 @@
 	use App\Photo;
 	use App\Video;
 
+	use Carbon\Carbon;
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -285,3 +287,25 @@ Route::get('/', function () {
  * CRUD Application
  */
 Route::resource('/posts', 'PostController');
+
+Route::get('/dates', function() {
+
+	$date = new DateTime('+1 week');
+
+	echo $date->format('m-d-Y');
+
+	echo '<br />';
+
+	echo  Carbon::now()->addDay(2)->diffForHumans();
+
+});
+
+Route::get('/mutators', function() {
+
+	$user = User::findOrFail(1);
+
+	$user->name = 'Camilla';
+
+	$user->save();
+
+});	
