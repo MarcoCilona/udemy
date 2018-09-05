@@ -3,7 +3,7 @@ Most used terminal commands:
 	// create new project	
 	composer create-project --prefer-dist laravel/laravel projectName (laravel version)
 
-	//clear
+	// clear
 	composer dump-autoload
 
 	// initialize existing project
@@ -115,4 +115,5 @@ ELOQUENT ONE TO ONE
 
 You can relate one model to onother using hasOne() and belongsTo() methods in the two model.
 
-ELOQUENT ONE TO MANY
+ELOQUENT POLYMORPHIC RELATIONSHIP
+
