@@ -115,4 +115,8 @@ ELOQUENT ONE TO ONE
 
 You can relate one model to onother using hasOne() and belongsTo() methods in the two model.
 
-ELOQUENT ONE TO MANY
+LOGIN SYSTEM
+
+To create a login system use this command:
+	
+	php artisan make:auth
