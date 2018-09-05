@@ -13,6 +13,8 @@ class Post extends Model
 
 	protected $table = 'posts';
 
+    public $directory = '/images/';
+
 	/**
      * The attributes that are mass assignable.
      *
@@ -20,7 +22,8 @@ class Post extends Model
      */
 	protected $fillable = [
 		'title',
-		'content'
+		'content',
+        'path'
 	];
 
 	public function photos() {
@@ -44,6 +47,17 @@ class Post extends Model
     public static function scopeLatest($query) {
 
         return $query->orderBy('title', 'asc')->get();
+
+    }
+
+    /**
+     * Usign accessor to set the path for getting the images.
+     * @param  [type] $value [description]
+     * @return [type]        [description]
+     */
+    public function getPathAttribute($value) {
+
+        return $this->directory.$value;
 
     }
 

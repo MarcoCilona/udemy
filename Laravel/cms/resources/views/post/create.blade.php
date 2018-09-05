@@ -4,7 +4,11 @@
 
 @section('content')
 
-	{!! Form::open(['method'=>'POST', 'action'=>'PostController@store']) !!}	
+	{!! Form::open(['method'=>'POST', 'action'=>'PostController@store', 'files'=>true]) !!}	
+
+		<div class="form-group">
+			{!! Form::file('file', null, ['class'=>'form-group']) !!}
+		</div>
 		
 		<div class="form-group">
 			{!! Form::label('title', 'Post title:') !!}
