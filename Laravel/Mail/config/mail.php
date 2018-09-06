@@ -55,7 +55,7 @@ return [
     |
     */
 
-    'from' => ['address' => 'mctestsmail@gmail.com', 'name' => 'Test'],
+    'from' => ['address' => env('MAIL_SENDER', null), 'name' => 'Test'],
 
     /*
     |--------------------------------------------------------------------------

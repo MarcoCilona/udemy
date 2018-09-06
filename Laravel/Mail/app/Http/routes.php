@@ -22,7 +22,7 @@ Route::get('/', function () {
 
 	Mail::send('emails.test', $data, function($message) {
 
-		$message->to('marco.cilona@gmail.com', 'Test')->subject('Testing subject');
+		$message->to(env('MAIL_RECEIVER', null), 'Test')->subject('Testing subject');
 
 	});
 
