@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Http\Requests\CreatePostRequest;
+/*
+Importing models
+ */
+use App\Post;
 
 class PostController extends Controller
 {
@@ -15,7 +20,11 @@ class PostController extends Controller
      */
     public function index()
     {
-        return "Hello from PostController index!";
+       
+       $posts = Post::latest();
+
+       return view('post.index', compact('posts'));
+
     }
 
     /**
@@ -25,7 +34,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('post.create');
     }
 
     /**
@@ -34,9 +43,31 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreatePostRequest $request)
     {
-        //
+
+        $input = $request->all();
+
+        if($file = $request->file('file')){
+
+            $name = $file->getClientOriginalName();
+
+            $file->move('images', $name);
+
+            $input['path'] = $name;
+
+        }
+
+        Post::create($input);
+
+        // $post = new Post();
+
+        // $post->title = $request->title;
+
+        // $post->save();
+
+        // return redirect('/posts');
+
     }
 
     /**
@@ -47,7 +78,11 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        return "This is the show method! " . $id;
+        
+        $post = Post::findOrFail($id);
+
+        return view('post.show', compact('post'));
+
     }
 
     /**
@@ -58,7 +93,11 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        
+        $post = Post::findOrFail($id);
+
+        return view('post.edit', compact('post'));
+
     }
 
     /**
@@ -70,7 +109,13 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        $post = Post::findOrFail($id);
+
+        $post->update($request->all());
+
+        return redirect(route('posts.index'));
+
     }
 
     /**
@@ -81,17 +126,23 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
+        $post = Post::findOrFail($id);
+
+        $post->forceDelete();
+
+        return redirect(route('posts.index'));
+
     }
 
     /**
-     * Function to retunr a view for the contact url
+     * Function to return a view for the contact url
      * @param  string $name Name of the person passed by the route. 
      * @return View
      */
     public function show_view($name='New User') {
 
-        return view('contactView', ['name' => $name]);
+        return view('contactView', compact('name'));
 
     }
 }

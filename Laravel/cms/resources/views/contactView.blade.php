@@ -1,11 +1,18 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Contact Page</title>
-</head>
-<body>
-	
-	<h1>This is the contact page! Welcome {{$name}}</h1>
+@extends('layouts.app')
 
-</body>
-</html>
+@section('title', 'Contact Page')
+
+@section('content')
+
+	<h1>Contact Page</h1>
+
+	<p>Hello {{$name}}</p>
+
+@stop
+
+@section('footer')
+	
+	<script type="text/javascript">console.log('Hello World!')</script>
+	
+@stop
+

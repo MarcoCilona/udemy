@@ -1,7 +1,32 @@
+Most used terminal commands:
+
+	// create new project	
+	composer create-project --prefer-dist laravel/laravel projectName (laravel version)
+
+	// clear
+	composer dump-autoload
+
+	// initialize existing project
+	composer install
+	php artisan key:generate
+
+	// commands for MVC
+	php artisan make:controller [--resource] controllerName
+	php artisan make:model Post
+	
+	// database migration commands
+	php artisan migrate //< create the tables into the connected DB
+	php artisan make:migration create_posts_table --create="posts"
+	php artisan migrate:refresh //< reset and re-run all migrations
+	php artisan migrate:rollback //< rollback the last database migration
+	php artisan migrate:reset //< rollback all database migrations
+
+	
+
 In app >> Http we have Controllers, Middleware, Requests.
 One of the main file is routes.php, in which we create and controll all the routs of the application.
 
-In the config folder we have app.php where we register the classe we want to use from other providers, the plugins we want to use. We register them in this file. 
+In the config folder we have app.php where we register the classes we want to use from other providers, the plugins we want to use. We register them in this file. 
 We also have the database connection file, which return an array.
 
 The vendor folder contains all the packages we will install.
@@ -10,10 +35,88 @@ The vendor folder contains all the packages we will install.
 ROUTES
 
 This files uses the static method Route::get, which takes the url we want to use and a function to return the view for this specific url.
-You can pass parameters to the function by simply including them in the routes url, this way: '/example/{parameter}'
+You can pass parameters to the function by simply including them in the routes url, this way: 
+	
+	'/example/{parameter}'
 
 CONTROLLERS
 
 Are "classes" that deals with information coming from databases and pass them to the view. And they can do also viceversa, taking information from the view and passing them to the model.
 
 namespace: allows us to use same functions and variables name in different parts of the same application without causing any problem. Prevents from having collisions.
+
+
+BLADE 
+
+Is a template engine for php.
+
+Since most web applications maintain the same general layout across various pages, it's convenient to define this layout as a single Blade view stored in views/layouts/app.blade.php
+
+Some directives:
+	- @section --> defines section of content;
+	- @yield --> is used to display the contents of a given section
+
+
+DATABASE MIGRATIONS
+
+Laravel provides two classes for migration: 
+ 	-	user migration;
+ 	- 	password reset
+
+The following commands lets you add a column to an existing table with data already in it.
+
+	php artisan make:migration add_is_admin_column_to_posts_tables --table="posts"
+
+After running this command modify the created file and the run the migrate command.
+
+To delete a migration you cannot just delete the file from the folder. You have to reset and then delete the file but doing so you will lose all the records and tables.
+
+DB QUERY
+
+When reading data from a db, the result is given to us has a generic class so that we can access information like class properties.
+
+ELOQUENT
+
+The model is a class that deals with the database. When creating a new model it gets located in the 'app' folder. 
+The artisan command takes the name provided and make it lowercase and plural.
+
+ORM -> Object-Relational Mapping
+
+The save method allows you to insert new records or to update an existing one.
+
+Using softDeletes, when you perform a delete on a record it will not be permanently deleted but it will be trashed ready to be restore if needed. You can also delete permanently a trashed element using the forceDelete() method.
+
+Laravel has different relationship models:
+	- one to one ---> hasOne()/belongsTo()
+	- one to many ---> hasMany()/belongsToMany()
+	- many to many
+
+
+TINKER
+
+With Tinker we can do all the CRUD operation through the terminal.
+
+Access Tinker:
+
+	php artisan tinker
+
+Create record:
+	
+	$post = App\ModelName::create();
+
+	$post = new App\ModelName
+	$post->columName = value;
+	$post->save();
+
+With tinker you can do all the CRUD operations just you will normally do when coding
+
+
+ELOQUENT ONE TO ONE
+
+You can relate one model to onother using hasOne() and belongsTo() methods in the two model.
+
+LOGIN SYSTEM
+
+To create a login system use this command:
+	
+	php artisan make:auth
