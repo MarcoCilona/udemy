@@ -3,7 +3,7 @@ Most used terminal commands:
 	// create new project	
 	composer create-project --prefer-dist laravel/laravel projectName (laravel version)
 
-	//clear
+	// clear
 	composer dump-autoload
 
 	// initialize existing project
