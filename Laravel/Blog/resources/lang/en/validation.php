@@ -92,8 +92,8 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'img' => [
+            'image' => 'You must select an image type file!',
         ],
     ],
 
