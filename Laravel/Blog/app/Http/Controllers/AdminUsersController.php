@@ -104,7 +104,12 @@ class AdminUsersController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.users.edit');
+        
+		$user= User::findOrFail($id);
+		$roles = Role::pluck('name', 'id')->all();	
+			
+        return view('admin.users.edit', compact('user', 'roles'));
+		
     }
 
     /**
@@ -116,7 +121,34 @@ class AdminUsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+     	        
+		$edited_user = User::findOrFail($id);
+		
+		$edited_user->update([
+			'name' => $request->name,
+            'email' => $request->email,
+            'role_id' => $request->role,
+            'is_active' => $request->status,
+		]);
+		
+		if($password = $request->password){
+						
+			$edited_user->update(['password' => bcrypt(trim($password))]);
+			
+		}
+		
+		if($image = $request->file('img')){
+				
+			$name = time() . $image->getClientOriginalName();
+			
+			$image->move('images', $name);
+			
+			$profile_picture = $edited_user->photos()->update(['file' => $name]);
+				
+		}		
+		
+	    return redirect(route('admin.users.index'));
+		
     }
 
     /**
