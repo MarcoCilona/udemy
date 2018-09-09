@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 
 class User extends Authenticatable
 {
@@ -12,10 +13,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'role_id', 'photo_id', 'is_active'
+        'name', 'email', 'password', 'role_id', 'photo_id', 'is_active', 'file'
     ];
 
-    public $image_path = '/images/';
+    public $directory = '/images/';
 
     /**
      * The attributes that should be hidden for arrays.
@@ -32,9 +33,15 @@ class User extends Authenticatable
 
     }
 
-    public function photo() {
+    public function photos() {
 
-        return $this->belognsTo('App\Photo');
+        return $this->morphOne('App\Photo', 'imageable');
+
+    }
+
+    public function getFileAttribute($value) {
+
+        return $this->directory . $this->photos->file;
 
     }
 

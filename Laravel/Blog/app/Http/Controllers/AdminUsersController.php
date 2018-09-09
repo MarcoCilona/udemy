@@ -59,7 +59,16 @@ class AdminUsersController extends Controller
         $email = $request->email;
         $password = $request->password;
         $status = $request->status;
-        $photo_id = null;
+
+        $name = 'default.jpeg';
+
+        $user = User::create([
+            'name' => $username,
+            'email' => $email,
+            'role_id' => $role_id,
+            'password' => bcrypt($password),
+            'is_active' => $status,
+        ]);
         
         if($file = $request->file('img')){
 
@@ -67,20 +76,11 @@ class AdminUsersController extends Controller
 
             $file->move('images', $name);
 
-            $photo = Photo::create(['file' => $name]);
-
-            $photo_id = $photo->id;
-
         }
 
-        User::create([
-            'name' => $username,
-            'email' => $email,
-            'role_id' => $role_id,
-            'password' => bcrypt($password),
-            'is_active' => $status,
-            'photo_id' => $photo_id
-        ]);
+        $photo = Photo::create(['file' => $name]);
+
+        $user->photos()->save($photo);
 
         return redirect(route('admin.users.index'));
     }
