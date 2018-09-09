@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 use App\Http\Requests;
 use App\Http\Requests\UserRequest;
-
 
 // Models
 use App\User;
@@ -81,6 +81,8 @@ class AdminUsersController extends Controller
         $photo = Photo::create(['file' => $name]);
 
         $user->photos()->save($photo);
+		
+		Session::flash('message', 'The user has been saved!');
 
         return redirect(route('admin.users.index'));
     }
@@ -145,7 +147,9 @@ class AdminUsersController extends Controller
 			
 			$profile_picture = $edited_user->photos()->update(['file' => $name]);
 				
-		}		
+		}
+		
+		Session::flash('message', 'The user has been updated!');	
 		
 	    return redirect(route('admin.users.index'));
 		
@@ -159,6 +163,19 @@ class AdminUsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
+		$user = User::findOrFail($id);
+		
+		if($user->photos->file !== '/images/default.jpg')
+			unlink(public_path() . $user->photos->file);
+		
+		$user->photos()->delete();
+		
+		$user->delete();
+		
+		Session::flash('message', 'The user has been deleted!');
+				
+		return redirect(route('admin.users.index'));
+		
     }
 }

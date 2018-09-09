@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Photo;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -63,11 +64,17 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'role_id' => 2,
             'password' => bcrypt($data['password']),
         ]);
+		
+		$photo = Photo::create(['file' => 'default.jpg']);
+		
+		$user->photos()->save($photo);
+		
+		return $user;
     }
 }

@@ -6,6 +6,8 @@
 
 	@section('header', 'Users')
 	
+	<p>{{session('message')}}</p>
+	
 		<table class="table">
 		    <thead>
 		      	<tr>
