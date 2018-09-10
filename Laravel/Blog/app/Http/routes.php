@@ -36,6 +36,15 @@ Route::group(['middleware' => 'admin'], function() {
 	/*
 	 * Admin Post routes.
 	 */
-	Route::resource('admin/posts', 'AdminPostsController');
+	Route::resource('admin/posts', 'AdminPostsController', ['except' => ['edit']]);
+
+	/**
+	 * Setting middleware only for the edit posts requests.
+	 */
+	Route::group(['middleware' => 'edit_post'], function () {
+
+		Route::resource('admin/posts', 'AdminPostsController', ['only' => ['edit']]);
+
+	});
 
 });

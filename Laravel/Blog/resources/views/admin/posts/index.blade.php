@@ -6,7 +6,7 @@
 
 	@section('header', 'All posts')
 
-	<p>{{session('message')}}</p>
+	<p>{{session('post_message')}}</p>
 
 	<table class="table">
 	    <thead>

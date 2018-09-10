@@ -25,7 +25,7 @@ class AdminPostsController extends Controller
     public function index()
     {
 
-    	$posts = Post::orderBy('user_id', 'desc')->get();
+    	$posts = Post::orderBy('user_id', 'asc')->get();
 
         return view('admin.posts.index', compact('posts'));
 
