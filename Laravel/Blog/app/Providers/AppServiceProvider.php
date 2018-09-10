@@ -17,6 +17,7 @@ class AppServiceProvider extends ServiceProvider
         
         Relation::morphMap([
             'user_photo' => \App\User::class,
+            'post_photo' => \App\Post::class,
         ]);
 
     }

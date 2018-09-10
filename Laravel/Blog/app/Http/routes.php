@@ -21,10 +21,21 @@ Route::get('/home', 'HomeController@index');
 
 Route::group(['middleware' => 'admin'], function() {
 	
+	/**
+	 * Admin route.
+	 */
 	Route::get('/admin', function () {
 		return view('admin.index');
 	});	
 
+	/**
+	 * Admin Users Route.
+	 */
 	Route::resource('admin/users', 'AdminUsersController');
 	
+	/*
+	 * Admin Post routes.
+	 */
+	Route::resource('admin/posts', 'AdminPostsController');
+
 });
