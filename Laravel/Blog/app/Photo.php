@@ -16,11 +16,4 @@ class Photo extends Model
 		return $this->morphTo();
 
 	}
-	
-	public function getFileAttribute($value) {
-
-        return $this->directory . $value;
-
-    }
-
 }

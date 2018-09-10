@@ -16,6 +16,7 @@ class User extends Authenticatable
         'name', 'email', 'password', 'role_id', 'photo_id', 'is_active'
     ];
 
+    public $directory = 'images/users/';
 
     /**
      * The attributes that should be hidden for arrays.
@@ -52,5 +53,11 @@ class User extends Authenticatable
 		return false;
 		
 	}
+
+    public function getFileAttribute() {
+
+        return '/' . $this->directory . $this->photos->file;
+
+    }
 
 }

@@ -60,7 +60,7 @@ class AdminUsersController extends Controller
         $password = $request->password;
         $status = $request->status;
 
-        $name = 'default.jpeg';
+        $name = 'default.jpg';
 
         $user = User::create([
             'name' => $username,
@@ -74,7 +74,7 @@ class AdminUsersController extends Controller
 
             $name = time() . $file->getClientOriginalName();
 
-            $file->move('images', $name);
+            $file->move($user->directory, $name);
 
         }
 
@@ -143,7 +143,7 @@ class AdminUsersController extends Controller
 				
 			$name = time() . $image->getClientOriginalName();
 			
-			$image->move('images', $name);
+			$image->move($edited_user->directory, $name);
 			
 			$profile_picture = $edited_user->photos()->update(['file' => $name]);
 				
@@ -166,8 +166,8 @@ class AdminUsersController extends Controller
         
 		$user = User::findOrFail($id);
 		
-		if($user->photos->file !== '/images/default.jpg')
-			unlink(public_path() . $user->photos->file);
+		if($user->photos->file !== 'default.jpg')
+			unlink(public_path() . $user->file);
 		
 		$user->photos()->delete();
 		

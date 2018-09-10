@@ -23,7 +23,7 @@
 						<td><a href="{{route('admin.users.edit', $user->id)}}">{{$user->name}}</a></td>
 						<td>{{$user->email}}</td>
 						<td>{{$user->role->name}}</td>
-						<td><img height="100px" src="{{$user->photos->file}}"></td>
+						<td><img height="100px" src="{{$user->file}}"></td>
 					</tr>
 				@endforeach	
 			</tbody>

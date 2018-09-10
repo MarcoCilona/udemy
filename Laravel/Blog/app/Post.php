@@ -9,6 +9,8 @@ class Post extends Model
     
 	protected $fillable = ['id', 'title', 'content', 'user_id', 'category_id'];
 
+	public $directory = 'images/posts/';
+
 	public function photos() {
 
 		return $this->morphOne('App\Photo', 'imageable');
@@ -26,5 +28,12 @@ class Post extends Model
 		return $this->belongsTo('App\Category');
 
 	}
+
+	public function getFileAttribute() {
+
+		return '/' . $this->directory . $this->photos->file;
+
+	}
+
 
 }

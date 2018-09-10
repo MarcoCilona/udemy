@@ -71,7 +71,7 @@ class AuthController extends Controller
             'password' => bcrypt($data['password']),
         ]);
 		
-		$photo = Photo::create(['file' => 'default.jpg']);
+		$photo = Photo::create();
 		
 		$user->photos()->save($photo);
 		

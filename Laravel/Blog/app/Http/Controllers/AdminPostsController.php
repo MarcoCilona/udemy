@@ -72,7 +72,7 @@ class AdminPostsController extends Controller
        	$name = time() . $image->getClientOriginalName();
 
        	// Moving the image to the images folder (in public folder)
-       	$image->move('images', $name);
+       	$image->move($post->directory, $name);
 
        	// Creating the new Photo instance
        	$photo = Photo::create(['file' => $name]);
@@ -137,7 +137,7 @@ class AdminPostsController extends Controller
 
             $name = time() . $image->getClientOriginalName();
 
-            $image->move('images', $name);
+            $image->move($post->directory, $name);
 
             $post->photos()->update(['file' => $name]);
 
@@ -155,6 +155,17 @@ class AdminPostsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
+        $post = Post::findOrFail($id);
+
+        unlink(public_path() . $post->file);
+
+        $post->photos()->delete();
+
+        $post->delete();
+
+        Session::flash('post_message', 'Post deleted!');
+
+        return redirect(route('admin.posts.index'));
     }
 }

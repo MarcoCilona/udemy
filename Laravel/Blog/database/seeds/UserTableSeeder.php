@@ -16,7 +16,6 @@ class UserTableSeeder extends Seeder
     	$user = factory(App\User::class, 10)->create()->each(function($user){
     			$user->photos()->save(
     				App\Photo::create([
-			    		'file' => 'default.jpg',
 			    		'imageable_id' => $user->id,
 			    		'imageable_type' => 'user_photo'
 			    	])

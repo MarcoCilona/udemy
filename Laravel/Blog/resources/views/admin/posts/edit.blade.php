@@ -8,7 +8,7 @@
 
 	<div class="row">
 		<div class="col-xs-3">
-			<img class="img-responsive img-rounded" src="{{$post->photos->file}}"></img>
+			<img class="img-responsive img-rounded" src="{{$post->file}}"></img>
 		</div>
 
 		<div class="col-xs-9">
