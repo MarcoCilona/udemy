@@ -22,11 +22,12 @@
 	    <tbody>
 	    	@foreach($posts as $post)
 		      	<tr>
-		        	<td>{{$post->id}}</td>
+		        	<td><a href="{{route('admin.posts.edit', $post->id)}}">{{$post->id}}</a></td>
 		        	<td>{{$post->title}}</td>
 		        	<td>{{$post->content}}</td>
 		        	<td><img class="img-responsive" src="{{$post->photos->file}}"></td>
 		        	<td>{{$post->author->name}}</td>
+		        	<td>{{$post->category->name}}</td>
 
 		    	</tr>
 		    @endforeach

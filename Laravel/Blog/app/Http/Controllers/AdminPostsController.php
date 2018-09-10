@@ -10,6 +10,7 @@ use App\Http\Requests\PostRequest;
 
 // Models
 use Auth;
+use App\Category;
 use App\Photo;
 use App\Post;
 use App\User;
@@ -24,7 +25,7 @@ class AdminPostsController extends Controller
     public function index()
     {
 
-    	$posts = Post::all();
+    	$posts = Post::orderBy('user_id', 'desc')->get();
 
         return view('admin.posts.index', compact('posts'));
 
@@ -38,9 +39,9 @@ class AdminPostsController extends Controller
     public function create()
     {
 
-    	$users = User::pluck('name', 'id')->all();
+    	$categories = Category::pluck('name', 'id')->all();
     	    	
-        return view('admin.posts.create', compact('users'));
+        return view('admin.posts.create', compact('categories'));
 
     }
 
@@ -60,6 +61,7 @@ class AdminPostsController extends Controller
         $post = Post::create([
         	'title' => $request->title,
         	'content' => $request->content,
+            'category_id' => $request->category,
         	'user_id' => $logged_user,
         ]);
 
@@ -105,7 +107,12 @@ class AdminPostsController extends Controller
      */
     public function edit($id)
     {
-        //
+        
+        $post = Post::findOrFail($id);
+        $categories = Category::pluck('name', 'id')->all();
+
+        return view('admin.posts.edit', compact('post', 'categories'));
+
     }
 
     /**
@@ -117,7 +124,27 @@ class AdminPostsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        $post = Post::findOrFail($id);
+
+        $post->update([
+            'title' => $request->title,
+            'content' => $request->content,
+            'category_id' => $request->category,
+        ]);
+
+        if($image = $request->file('image')){
+
+            $name = time() . $image->getClientOriginalName();
+
+            $image->move('images', $name);
+
+            $post->photos()->update(['file' => $name]);
+
+        }
+
+        return redirect(route('admin.posts.index'));
+
     }
 
     /**

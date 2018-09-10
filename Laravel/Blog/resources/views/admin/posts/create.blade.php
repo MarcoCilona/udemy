@@ -22,7 +22,14 @@
 				{!! Form::label('content', 'Post Content') !!}
 				{!! Form::textarea('content', null, ['class' => 'form-control']) !!}
 
-			</div>	
+			</div>
+
+			<div class="form-group">
+				
+				{!! Form::label('category', 'Post Category') !!}
+				{!! Form::select('category', $categories, null, ['class' => 'form-control']) !!}
+
+			</div>		
 
 			<div class="form-group">
 				
