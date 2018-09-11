@@ -12,21 +12,21 @@
 		</div>
 
 		<div class="col-xs-9">
-			{!! Form::open(['method'=>'PATCH', 'action'=>['AdminPostsController@update', $post->id], 'files'=>true]) !!}
+			{!! Form::model($post, ['method'=>'PATCH', 'action'=>['AdminPostsController@update', $post->id], 'files'=>true]) !!}
 			
 			<div class="form-group">
 				{!! Form::label('title', 'Post title') !!}
-				{!! Form::text('title', $post->title, ['class' => 'form-control']) !!}
+				{!! Form::text('title', null, ['class' => 'form-control']) !!}
 			</div>
 
 			<div class="form-group">
 				{!! Form::label('content', 'Post content') !!}
-				{!! Form::textarea('content', $post->content, ['class' => 'form-control']) !!}
+				{!! Form::textarea('content', null, ['class' => 'form-control']) !!}
 			</div>
 
 			<div class="form-group">
 				{!! Form::label('category', 'Post category') !!}
-				{!! Form::select('category',  $categories, $post->category->id, ['class' => 'form-control']) !!}
+				{!! Form::select('category',  $categories, null, ['class' => 'form-control']) !!}
 			</div>
 
 			<div class="form-group">
