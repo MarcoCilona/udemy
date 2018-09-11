@@ -25,7 +25,9 @@
 					</div>
 
 			{!! Form::close() !!}
-
+			
+			@if($category->id !== 1)
+				
 				{!! Form::open(['method'=>'DELETE', 'action' => ['AdminCategoryController@destroy', $category->id]]) !!}
 
 					<div class="col-xs-6 pull-right">
@@ -34,7 +36,17 @@
 
 					</div>
 
-				{!! Form::close() !!}	
+				{!! Form::close() !!}
+
+			@else
+	
+				<div class="col-xs-6 pull-right">
+					
+					<p class="alert alert-info pull-right">You cannot delete this category!</p>	
+
+				</div>
+
+			@endif
 
 				</div>
 		</div>

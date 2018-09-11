@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 use App\Http\Requests;
 use App\Category;
@@ -101,7 +102,6 @@ class AdminCategoryController extends Controller
     public function destroy($id)
     {
         
-
         $category = Category::findOrFail($id);
 
         $posts = $category->posts;
@@ -111,6 +111,8 @@ class AdminCategoryController extends Controller
         }
 
         $category->delete();
+
+        Session::flash('cat_message', 'Category deleted!');
 
         return redirect(route('admin.categories.index'));
 

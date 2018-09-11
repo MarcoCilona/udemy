@@ -6,6 +6,8 @@
 	
 	@section('header', 'Categories')
 
+	<p>{{session('cat_message')}}</p>
+
 	<div class="row">
 		
 		<div class="col-xs-6">
@@ -36,11 +38,7 @@
 			    <tbody>
 			    	@foreach($categories as $category)
 					    <tr>
-					    	@if($category->id == 1)
-					    		<td>{{$category->id}}</td>
-					    	@else
-					        	<td><a href="{{route('admin.categories.edit', $category->id)}}">{{$category->id}}</a></td>
-					        @endif
+				        	<td><a href="{{route('admin.categories.edit', $category->id)}}">{{$category->id}}</a></td>
 					        <td>{{$category->name}}</td>
 					    </tr>
 				    @endforeach
