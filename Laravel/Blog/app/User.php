@@ -54,10 +54,10 @@ class User extends Authenticatable
 		
 	}
 
-    public function getFileAttribute() {
+    // public function getFileAttribute() {
 
-        return '/' . $this->directory . $this->photos->file;
+    //     return '/' . $this->directory . $this->photos->file;
 
-    }
+    // }
 
 }

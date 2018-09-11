@@ -16,4 +16,13 @@ class Photo extends Model
 		return $this->morphTo();
 
 	}
+
+	public function getFilePathAttribute() {
+		
+		if($this->imageable)
+			return '/' . $this->imageable->directory . $this->file;
+
+		return $this->directory . $this->file;
+
+	}
 }

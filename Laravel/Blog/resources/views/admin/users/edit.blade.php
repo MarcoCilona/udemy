@@ -8,7 +8,7 @@
 	<div class="row">
 		<div class="col-sm-3">
 			
-			<img class="img-responsive img-rounded"height="100px" src={{$user->file}} />
+			<img class="img-responsive img-rounded"height="100px" src="{{$user->photos->filePath}}" />
 			
 		</div>
 	

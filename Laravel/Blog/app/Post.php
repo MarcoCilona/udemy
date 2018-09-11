@@ -53,11 +53,11 @@ class Post extends Model
 	 * Accessor for file attribute. Retrieves the path to access post photo.
 	 * @return [type] [description]
 	 */
-	public function getFileAttribute() {
+	// public function getFileAttribute() {
 
-		return '/' . $this->directory . $this->photos->file;
+	// 	return '/' . $this->directory . $this->photos->file;
 
-	}
+	// }
 
 	/**
 	 * Override the delete function

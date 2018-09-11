@@ -25,7 +25,7 @@
 		        	<td><a href="{{route('admin.posts.edit', $post->id)}}">{{$post->id}}</a></td>
 		        	<td>{{$post->title}}</td>
 		        	<td>{{$post->content}}</td>
-		        	<td><img class="img-responsive" src="{{$post->file}}"></td>
+		        	<td><img class="img-responsive" src="{{$post->photos->file_path}}"></td>
 		        	<td>{{$post->author->name}}</td>
 		        	<td>{{$post->category->name}}</td>
 
