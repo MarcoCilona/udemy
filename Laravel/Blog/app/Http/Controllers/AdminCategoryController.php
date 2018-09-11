@@ -41,7 +41,11 @@ class AdminCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        Category::create(['name' => $request->name]);
+
+        return redirect(route('admin.categories.index'));
+
     }
 
     /**

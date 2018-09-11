@@ -160,8 +160,6 @@ class AdminPostsController extends Controller
 
         unlink(public_path() . $post->file);
 
-        $post->photos()->delete();
-
         $post->delete();
 
         Session::flash('post_message', 'Post deleted!');

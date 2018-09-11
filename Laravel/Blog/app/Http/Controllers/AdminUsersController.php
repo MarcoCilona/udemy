@@ -170,6 +170,13 @@ class AdminUsersController extends Controller
 			unlink(public_path() . $user->file);
 		
 		$user->photos()->delete();
+
+        // Retrieve all related posts.
+        $posts = $user->posts;
+
+        foreach ($posts as $post) {
+            $post->delete();
+        }
 		
 		$user->delete();
 		
