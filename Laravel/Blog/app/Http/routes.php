@@ -11,15 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', ['as'=>'homePage', 'uses'=>function () {
+    return view('index');
+}]);
 
 Route::auth();
 
-Route::get('/home', 'HomeController@index');
-
-Route::group(['middleware' => 'admin'], function() {
+Route::group(['middleware' => ['admin', 'auth']], function() {
 	
 	/**
 	 * Admin route.
@@ -51,4 +49,12 @@ Route::group(['middleware' => 'admin'], function() {
 
 	Route::resource('admin/media', 'AdminMediaController');
 
+	Route::resource('admin/comments', 'AdminCommentsController');
+
+	Route::resource('admin/comments/replies', 'AdminCommentRepliesController');
+
+
+
 });
+
+Route::resource('/post', 'PostController', ['only'=>['show']]);

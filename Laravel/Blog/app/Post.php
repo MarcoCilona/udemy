@@ -50,14 +50,14 @@ class Post extends Model
 	}
 
 	/**
-	 * Accessor for file attribute. Retrieves the path to access post photo.
+	 * Relationship with comments table
 	 * @return [type] [description]
 	 */
-	// public function getFileAttribute() {
+	public function comments() {
 
-	// 	return '/' . $this->directory . $this->photos->file;
+		return $this->hasMany('App\Comment');
 
-	// }
+	}
 
 	/**
 	 * Override the delete function
