@@ -1,5 +1,9 @@
 @extends('layouts.blog-post')
 
+@section('navigation')
+	@include('includes.navigation')
+@endsection
+
 @section('post_title', $post->title)
 @section('post_author', $post->author->name)
 @section('post_date', $post->created_at->diffForHumans())

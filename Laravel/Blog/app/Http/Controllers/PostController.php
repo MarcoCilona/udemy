@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use App\Category;
 use App\Comment;
 use App\Post;
 
@@ -18,7 +19,12 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        
+        $posts = Post::all();
+        $categories = Category::where('id', '!=', 1)->get();
+
+        return view('index', compact('posts', 'categories'));
+
     }
 
     /**
@@ -33,7 +39,9 @@ class PostController extends Controller
         $post = Post::findOrFail($id);
         $comments = $post->comments;
 
-        return view('post', compact('post', 'comments'));
+        $categories = Category::where('id', '!=', 1)->get();
+
+        return view('post', compact('post', 'comments', 'categories'));
 
     }
 

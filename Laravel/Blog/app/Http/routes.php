@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', ['as'=>'homePage', 'uses'=>function () {
-    return view('index');
-}]);
+Route::get('/', ['as'=>'homePage', 'uses'=>'PostController@index']);
 
 Route::auth();
 
