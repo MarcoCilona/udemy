@@ -13,7 +13,9 @@
 @section('comment')
 	@foreach($comments as $comment)
 		@if($comment->is_active == 1)
-			@include('includes.commentTemplate')
+
+			@include('includes.commentTemplate', ['type' => null, 'obj' => $comment])
+		
 		@endif
 	@endforeach
 @endsection

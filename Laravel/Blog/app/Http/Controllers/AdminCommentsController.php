@@ -111,6 +111,10 @@ class AdminCommentsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
+        Comment::findOrFail($id)->delete();
+
+        return redirect()->back();
+        
     }
 }

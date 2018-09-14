@@ -42,7 +42,7 @@ class Comment extends Model
 	 * Relationship with users table
 	 * @return [type] [description]
 	 */
-	public function authorName() {
+	public function authors() {
 
 		return $this->belongsTo('App\User', 'author');
 

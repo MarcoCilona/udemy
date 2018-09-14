@@ -27,4 +27,10 @@ class CommentReply extends Model
 
 	}
 
+	public function authors() {
+
+		return $this->belongsTo('App\User', 'author');
+
+	}
+
 }

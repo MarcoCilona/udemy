@@ -13,6 +13,7 @@
 	        	<th>Author</th>
 	        	<th>Body</th>
 	        	<th>Status</th>
+	        	<th>Delete</th>
 	     	</tr>
 	    </thead>
 	    <tbody>
@@ -22,14 +23,25 @@
 			        
 			        @foreach($group as $comment)
 				        <tr>
-					        <td>{{$comment->authorName->name}}</td>
+					        <td>{{$comment->authors->name}}</td>
 					        <td>{{$comment->body}}</td>
-					        <td>{!! Form::open(['method'=>'PATCH', 'action'=>['AdminCommentsController@update', $comment->id]]) !!}
+					        <td>
+					        	{!! Form::open(['method'=>'PATCH', 'action'=>['AdminCommentsController@update', $comment->id]]) !!}
 								
-								<div class="form-group">
-									{!! Form::submit($comment->status, ['class'=>'btn btn-primary']) !!}
-								</div>
+									<div class="form-group">
+										{!! Form::submit($comment->status, ['class'=>'btn btn-primary']) !!}
+									</div>
+
 				        	{!! Form::close() !!}
+							</td>
+							<td>
+								{!! Form::open(['method'=>'DELETE', 'action'=>['AdminCommentsController@destroy', $comment->id]]) !!}
+									
+									<div class="form-group">
+										{!! Form::submit('Delete', ['class'=>'btn btn-danger']) !!}						
+									</div>
+
+								{!! Form::close() !!}
 							</td>
 						</tr>
 					@endforeach

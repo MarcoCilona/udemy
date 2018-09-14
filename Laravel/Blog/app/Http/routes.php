@@ -15,7 +15,7 @@ Route::get('/', ['as'=>'homePage', 'uses'=>'PostController@index']);
 
 Route::auth();
 
-Route::group(['middleware' => ['admin', 'auth']], function() {
+Route::group(['middleware' => ['auth', 'admin']], function() {
 	
 	/**
 	 * Admin route.
@@ -50,8 +50,6 @@ Route::group(['middleware' => ['admin', 'auth']], function() {
 	Route::resource('admin/comments', 'AdminCommentsController');
 
 	Route::resource('admin/comments/replies', 'AdminCommentRepliesController');
-
-
 
 });
 

@@ -39,7 +39,7 @@ class PostController extends Controller
         $post = Post::findOrFail($id);
         $comments = $post->comments;
 
-        $categories = Category::where('id', '!=', 1)->get();
+        $categories = Category::where('id', '!=', 1)->get()->sortByDesc('created_at');
 
         return view('post', compact('post', 'comments', 'categories'));
 

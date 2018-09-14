@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use Auth;
+use App\CommentReply;
+
 class AdminCommentRepliesController extends Controller
 {
     /**
@@ -36,7 +39,16 @@ class AdminCommentRepliesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        CommentReply::create([
+            'comment_id' =>  $request->parent_comment,
+            'author' => Auth::user()->id,
+            'email' => Auth::user()->email,
+            'body' => $request->reply
+        ]);
+
+        return redirect()->back();
+
     }
 
     /**
