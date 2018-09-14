@@ -48,4 +48,13 @@ class Comment extends Model
 
 	}
 
+	public function getStatusAttribute () {
+
+		if($this->is_active == 1)
+			return 'Active';
+
+		return 'Inactive';
+
+	}
+
 }

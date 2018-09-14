@@ -12,9 +12,8 @@
 
 @section('comment')
 	@foreach($comments as $comment)
-		@section('comment_img', $comment->authorName->photos->filePath)
-		@section('comment_date', $comment->created_at->diffForHumans())
-		@section('comment_body', $comment->body)
-		@include('includes.commentTemplate')
+		@if($comment->is_active == 1)
+			@include('includes.commentTemplate')
+		@endif
 	@endforeach
 @endsection

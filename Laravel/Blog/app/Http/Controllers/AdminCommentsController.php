@@ -19,9 +19,9 @@ class AdminCommentsController extends Controller
     public function index()
     {
         
-        $comments = Comment::all();
-
-        return view('admin.posts.comments.index', compact('comments'));
+        $comments_groups = Comment::all()->groupBy('post_id');
+                
+        return view('admin.posts.comments.index', compact('comments_groups'));
 
     }
 
@@ -89,7 +89,18 @@ class AdminCommentsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        $comment = Comment::findOrFail($id);
+
+        $currentStatus = $comment->is_active;
+        
+        ($currentStatus == 0) ? $newStatus = 1 : $newStatus = 0;
+            
+        $comment->update([
+            'is_active' => $newStatus,
+        ]);
+
+        return redirect()->back();
     }
 
     /**
